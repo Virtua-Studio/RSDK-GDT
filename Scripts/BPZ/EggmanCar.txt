@@ -16,21 +16,21 @@ private alias object.value3 : object.boundsR
 private alias object.value4 : object.carPos.y
 
 // States
-private alias 0 : EHZEGGMANCAR_SELFDRIVING
-private alias 1 : EHZEGGMANCAR_EGGMANENTER
-private alias 2 : EHZEGGMANCAR_DRIVING
-private alias 3 : EHZEGGMANCAR_EXPLODE
-private alias 4 : EHZEGGMANCAR_DESTROYED
+private alias 0 : BPZEGGMANCAR_SELFDRIVING
+private alias 1 : BPZEGGMANCAR_EGGMANENTER
+private alias 2 : BPZEGGMANCAR_DRIVING
+private alias 3 : BPZEGGMANCAR_EXPLODE
+private alias 4 : BPZEGGMANCAR_DESTROYED
 
 // Eggman Aliases
 private alias object.value8 : eggman.health
 
 // Car Drill States
-private alias 0 : EHZEGGMANDRILL_ATTATCHED
-private alias 2 : EHZEGGMANDRILL_FIRED
+private alias 0 : BPZEGGMANDRILL_ATTATCHED
+private alias 2 : BPZEGGMANDRILL_FIRED
 
 // Car Wheel States
-private alias 2 : EHZEGGMANWHEEL_BOUNCE
+private alias 2 : BPZEGGMANWHEEL_BOUNCE
 
 // Path ID Aliases
 private alias 0 : PATH_A
@@ -41,7 +41,7 @@ private alias 0 : PATH_A
 // ========================
 
 event ObjectUpdate
-	if object.state < EHZEGGMANCAR_EXPLODE
+	if object.state < BPZEGGMANCAR_EXPLODE
 		object.drawPos.y = object.carPos.y
 		object.drawPos.y >>= 1
 		object.drawPos.y -= 0xC0000
@@ -49,7 +49,7 @@ event ObjectUpdate
 	end if
 
 	switch object.state
-	case EHZEGGMANCAR_SELFDRIVING
+	case BPZEGGMANCAR_SELFDRIVING
 		object.xpos -= 0x10000
 
 		object.timer++
@@ -75,10 +75,10 @@ event ObjectUpdate
 		end if
 		break
 
-	case EHZEGGMANCAR_EGGMANENTER
+	case BPZEGGMANCAR_EGGMANENTER
 		break
 
-	case EHZEGGMANCAR_DRIVING
+	case BPZEGGMANCAR_DRIVING
 		object.xpos += object.xvel
 
 		if object.xpos <= object.boundsL
@@ -93,8 +93,8 @@ event ObjectUpdate
 
 			// if we can fire drill, do fire drill
 			if eggman[-1].health == 1
-				if object[+1].state == EHZEGGMANDRILL_ATTATCHED
-					object[+1].state += EHZEGGMANDRILL_FIRED
+				if object[+1].state == BPZEGGMANDRILL_ATTATCHED
+					object[+1].state += BPZEGGMANDRILL_FIRED
 					object[+1].xpos = object.xpos
 					if object.direction == FLIP_NONE
 						object[+1].xpos -= 0x360000
@@ -119,8 +119,8 @@ event ObjectUpdate
 
 			// if we can fire drill, do fire drill
 			if eggman[-1].health == 1
-				if object[+1].state == EHZEGGMANDRILL_ATTATCHED
-					object[+1].state += EHZEGGMANDRILL_FIRED
+				if object[+1].state == BPZEGGMANDRILL_ATTATCHED
+					object[+1].state += BPZEGGMANDRILL_FIRED
 					object[+1].xpos = object.xpos
 					if object.direction == FLIP_NONE
 						object[+1].xpos -= 0x360000
@@ -155,7 +155,7 @@ event ObjectUpdate
 		end if
 		break
 
-	case EHZEGGMANCAR_EXPLODE
+	case BPZEGGMANCAR_EXPLODE
 		object.ypos += object.yvel
 		object.yvel += 0x3800
 
@@ -169,18 +169,18 @@ event ObjectUpdate
 			end if
 
 			// Back Wheel
-			object[-2].state += EHZEGGMANWHEEL_BOUNCE
+			object[-2].state += BPZEGGMANWHEEL_BOUNCE
 			object[-2].xvel = temp0
 			object[-2].yvel = 0x30000
 			FlipSign(object[-2].xvel)
 
 			// Front Wheel 1
-			object[+2].state += EHZEGGMANWHEEL_BOUNCE
+			object[+2].state += BPZEGGMANWHEEL_BOUNCE
 			object[+2].xvel = temp0
 			object[+2].yvel = 0x30000
 
 			// Front Wheel 2
-			object[+3].state += EHZEGGMANWHEEL_BOUNCE
+			object[+3].state += BPZEGGMANWHEEL_BOUNCE
 			object[+3].xvel = temp0
 			object[+3].yvel = 0x30000
 
@@ -193,7 +193,7 @@ event ObjectUpdate
 		object[-1].ypos -= 0x80000
 		break
 		
-	case EHZEGGMANCAR_DESTROYED
+	case BPZEGGMANCAR_DESTROYED
 		break
 		
 	end switch
@@ -208,7 +208,7 @@ end event
 event ObjectStartup
 	CheckCurrentStageFolder("Zone01")
 	if checkResult == true
-		LoadSpriteSheet("EHZ/Objects.gif")
+		LoadSpriteSheet("BPZ/Objects.gif")
 		
 		// Car Body Frame
 		SpriteFrame(-48, -16, 93, 32, 0, 109)
@@ -233,7 +233,7 @@ end event
 event RSDKLoad
 	CheckCurrentStageFolder("Zone01")
 	if checkResult == true
-		LoadSpriteSheet("EHZ/Objects.gif")
+		LoadSpriteSheet("BPZ/Objects.gif")
 		SpriteFrame(-48, -16, 93, 32, 0, 109)
 	else
 		LoadSpriteSheet("MBZ/Objects.gif")

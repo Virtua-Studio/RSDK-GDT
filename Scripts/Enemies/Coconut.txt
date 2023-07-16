@@ -40,7 +40,7 @@ end event
 event ObjectStartup
 	CheckCurrentStageFolder("Zone01")
 	if checkResult == true
-		LoadSpriteSheet("EHZ/Objects.gif")
+		LoadSpriteSheet("BPZ/Objects.gif")
 		SpriteFrame(-6, -7, 12, 13, 82, 95)
 	else
 		LoadSpriteSheet("MBZ/Objects.gif")
@@ -61,7 +61,7 @@ end event
 event RSDKLoad
 	CheckCurrentStageFolder("Zone01")
 	if checkResult == true
-		LoadSpriteSheet("EHZ/Objects.gif")
+		LoadSpriteSheet("BPZ/Objects.gif")
 		SpriteFrame(-6, -7, 12, 13, 82, 95)
 	else
 		LoadSpriteSheet("MBZ/Objects.gif")

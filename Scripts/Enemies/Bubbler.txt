@@ -127,7 +127,7 @@ event ObjectStartup
 
 		// Huh?
 		// Just one Sprite Frame?
-		// And it's not even a Bubbler sprite, it's just the middle of the EHZ EggMobile...
+		// And it's not even a Bubbler sprite, it's just the middle of the BPZ EggMobile...
 		// But then, if you look at where this sprite would be on the CPZ sheet, it's a Ball sprite! What?
 		SpriteFrame(-12, -12, 24, 24, 166, 1)
 		

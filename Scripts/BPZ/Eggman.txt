@@ -5,7 +5,7 @@
 // Unpacked by Rubberduckycooly's script unpacker
 // ----------------------------------
 
-// Using EHZEggman as a prefix here because there's like 12 "Eggman" objects in the game so it's less confusing this way
+// Using BPZEggman as a prefix here because there's like 12 "Eggman" objects in the game so it's less confusing this way
 
 // ========================
 // Aliases
@@ -21,24 +21,24 @@ private alias object.value9  : object.invincibilityTimer
 private alias object.value10 : object.didHitPlayer
 
 // Eggman States
-private alias 0 : EHZEGGMAN_AWAITPLAYER
-private alias 1 : EHZEGGMAN_FLYIN
-private alias 2 : EHZEGGMAN_ENTERCAR
-private alias 3 : EHZEGGMAN_STARTCAR
-private alias 4 : EHZEGGMAN_INCAR
-private alias 5 : EHZEGGMAN_EXPLODE
-private alias 6 : EHZEGGMAN_EXITCAR
-private alias 7 : EHZEGGMAN_FLEE
-private alias 8 : EHZEGGMAN_ESCAPE
+private alias 0 : BPZEGGMAN_AWAITPLAYER
+private alias 1 : BPZEGGMAN_FLYIN
+private alias 2 : BPZEGGMAN_ENTERCAR
+private alias 3 : BPZEGGMAN_STARTCAR
+private alias 4 : BPZEGGMAN_INCAR
+private alias 5 : BPZEGGMAN_EXPLODE
+private alias 6 : BPZEGGMAN_EXITCAR
+private alias 7 : BPZEGGMAN_FLEE
+private alias 8 : BPZEGGMAN_ESCAPE
 
 // Eggman Animations
-private alias 0 : EHZEGGANI_INVISIBLE
-private alias 1 : EHZEGGANI_IDLE
-private alias 2 : EHZEGGANI_LAUGH
-private alias 3 : EHZEGGANI_HIT
-private alias 4 : EHZEGGANI_DEFEATED
-private alias 5 : EHZEGGANI_TOASTED
-private alias 6 : EHZEGGANI_PANIC
+private alias 0 : BPZEGGANI_INVISIBLE
+private alias 1 : BPZEGGANI_IDLE
+private alias 2 : BPZEGGANI_LAUGH
+private alias 3 : BPZEGGANI_HIT
+private alias 4 : BPZEGGANI_DEFEATED
+private alias 5 : BPZEGGANI_TOASTED
+private alias 6 : BPZEGGANI_PANIC
 
 // Eggman Heli Animations
 private alias 0 : HELIANI_ACTIVE
@@ -59,8 +59,8 @@ private alias object.value2 : eggmanCar.boundsL
 private alias object.value3 : eggmanCar.boundsR
 
 // Car Drill States
-private alias 0 : EHZEGGMANDRILL_ATTATCHED
-private alias 2 : EHZEGGMANDRILL_FIRED
+private alias 0 : BPZEGGMANDRILL_ATTATCHED
+private alias 2 : BPZEGGMANDRILL_FIRED
 
 // Player Aliases
 private alias object.xpos : player.xpos
@@ -85,14 +85,14 @@ private alias  1 : MUSICEVENT_FADETOSTAGE
 // Function Declarations
 // ========================
 
-reserve function EHZEggman_PlayHeliSfx
+reserve function BPZEggman_PlayHeliSfx
 
 
 // ========================
 // Function Definitions
 // ========================
 
-private function EHZEggman_PlayHeliSfx
+private function BPZEggman_PlayHeliSfx
 	if object.heliSfxTimer == 0
 		PlaySfx(SfxName[Helicopter], false)
 	end if
@@ -107,7 +107,7 @@ end function
 
 event ObjectUpdate
 	switch object.state
-	case EHZEGGMAN_AWAITPLAYER
+	case BPZEGGMAN_AWAITPLAYER
 		temp0 = object.ixpos
 		temp0 -= 200
 		stage.newXBoundary1 = temp0
@@ -117,7 +117,7 @@ event ObjectUpdate
 		stage.newXBoundary2 = temp0
 
 		if player[0].xpos > object.xpos
-			object.animation = EHZEGGANI_IDLE
+			object.animation = BPZEGGANI_IDLE
 			ResetObjectEntity(SLOT_MUSICEVENT_BOSS, TypeName[Music Event], MUSICEVENT_FADETOBOSS, 0, 0)
 			object[SLOT_MUSICEVENT_BOSS].priority = PRIORITY_ACTIVE
 
@@ -170,8 +170,8 @@ event ObjectUpdate
 		end if
 		break
 
-	case EHZEGGMAN_FLYIN
-		CallFunction(EHZEggman_PlayHeliSfx)
+	case BPZEGGMAN_FLYIN
+		CallFunction(BPZEggman_PlayHeliSfx)
 		object.xpos -= 0x10000
 		object.ypos += 0x10000
 		object.timer++
@@ -183,10 +183,10 @@ event ObjectUpdate
 		end if
 		break
 
-	case EHZEGGMAN_ENTERCAR
+	case BPZEGGMAN_ENTERCAR
 		break
 		
-	case EHZEGGMAN_STARTCAR
+	case BPZEGGMAN_STARTCAR
 		object.timer++
 		if object.timer == 24
 			object.timer = 0
@@ -208,15 +208,15 @@ event ObjectUpdate
 		end if
 		break
 
-	case EHZEGGMAN_INCAR
+	case BPZEGGMAN_INCAR
 		break
 
-	case EHZEGGMAN_EXPLODE
+	case BPZEGGMAN_EXPLODE
 		object.timer++
 		if object.timer == 180
 			object.timer = 0
 			object.heliAnim = HELIANI_EXTENDING
-			object.animation = EHZEGGANI_TOASTED
+			object.animation = BPZEGGANI_TOASTED
 			object.exploding = false
 			object.state++
 			ResetObjectEntity(SLOT_MUSICEVENT_BOSS, TypeName[Music Event], MUSICEVENT_FADETOSTAGE, 0, 0)
@@ -227,25 +227,25 @@ event ObjectUpdate
 		end if
 		break
 
-	case EHZEGGMAN_EXITCAR
+	case BPZEGGMAN_EXITCAR
 		break
 
-	case EHZEGGMAN_FLEE
-		CallFunction(EHZEggman_PlayHeliSfx)
+	case BPZEGGMAN_FLEE
+		CallFunction(BPZEggman_PlayHeliSfx)
 		object.ypos -= 0x10000
 
 		object.timer++
 		if object.timer == 96
 			object.timer = 0
 			object.direction = FLIP_X
-			object.animation = EHZEGGANI_PANIC
+			object.animation = BPZEGGANI_PANIC
 			object.state++
 		end if
 		break
 
-	case EHZEGGMAN_ESCAPE
+	case BPZEGGMAN_ESCAPE
 		if object.outOfBounds == false
-			CallFunction(EHZEggman_PlayHeliSfx)
+			CallFunction(BPZEggman_PlayHeliSfx)
 		end if
 		object.xpos += 0x60000
 
@@ -279,8 +279,8 @@ event ObjectUpdate
 				CheckEqual(player[currentPlayer].animation, ANI_DROWNING)
 				temp0 |= checkResult
 				if temp0 != false
-					if object.animation != EHZEGGANI_LAUGH
-						object.animation = EHZEGGANI_LAUGH
+					if object.animation != BPZEGGANI_LAUGH
+						object.animation = BPZEGGANI_LAUGH
 						object.animationTimer = 0
 					end if
 
@@ -301,7 +301,7 @@ event ObjectUpdate
 #endplatform
 							
 							player.score += 1000
-							object.animation = EHZEGGANI_DEFEATED
+							object.animation = BPZEGGANI_DEFEATED
 							object.animationTimer = 0
 							object.exploding = true
 							object.state++
@@ -311,8 +311,8 @@ event ObjectUpdate
 							object[+1].yvel = -0x18000
 							object[+1].ypos = eggmanCar[+1].drawPos.y
 
-							if object[+2].state == EHZEGGMANDRILL_ATTATCHED
-								object[+2].state = EHZEGGMANDRILL_FIRED
+							if object[+2].state == BPZEGGMANDRILL_ATTATCHED
+								object[+2].state = BPZEGGMANDRILL_FIRED
 								if object.direction == FLIP_NONE
 									object[+2].xvel = -0x30000
 								else
@@ -320,7 +320,7 @@ event ObjectUpdate
 								end if
 							end if
 						else
-							object.animation = EHZEGGANI_HIT
+							object.animation = BPZEGGANI_HIT
 							object.animationTimer = 0
 							object.invincibilityTimer = 32
 							PlaySfx(SfxName[Boss Hit], false)
@@ -332,7 +332,7 @@ event ObjectUpdate
 	end if
 
 	// R Boundary
-	if object.state != EHZEGGMAN_ESCAPE
+	if object.state != BPZEGGMAN_ESCAPE
 		foreach (GROUP_PLAYERS, currentPlayer, ACTIVE_ENTITIES)
 			temp0 = player[currentPlayer].collisionRight
 			temp0 <<= 16
@@ -455,10 +455,10 @@ event ObjectDraw
 	
 	switch object.animation
 	default
-	case EHZEGGANI_INVISIBLE
+	case BPZEGGANI_INVISIBLE
 		break
 
-	case EHZEGGANI_IDLE
+	case BPZEGGANI_IDLE
 		temp0 = object.animationTimer
 		temp0 >>= 3
 		object.animationTimer++
@@ -466,7 +466,7 @@ event ObjectDraw
 		DrawSpriteFX(temp0, FX_FLIP, object.xpos, object.ypos)
 		break
 
-	case EHZEGGANI_LAUGH
+	case BPZEGGANI_LAUGH
 		temp0 = object.animationTimer
 		temp0 &= 15
 		temp0 >>= 3
@@ -476,14 +476,14 @@ event ObjectDraw
 		if object.animationTimer == 50
 			object.animationTimer = 0
 			if player[0].animation != ANI_DYING
-				object.animation = EHZEGGANI_IDLE
+				object.animation = BPZEGGANI_IDLE
 			end if
 		end if
 
 		DrawSpriteFX(temp0, FX_FLIP, object.xpos, object.ypos)
 		break
 
-	case EHZEGGANI_HIT
+	case BPZEGGANI_HIT
 		temp0 = object.animationTimer
 		temp0 &= 1
 		temp0 += 2
@@ -491,13 +491,13 @@ event ObjectDraw
 		object.animationTimer++
 		if object.animationTimer == 50
 			object.animationTimer = 0
-			object.animation = EHZEGGANI_IDLE
+			object.animation = BPZEGGANI_IDLE
 		end if
 
 		DrawSpriteFX(4, FX_FLIP, object.xpos, object.ypos)
 		break
 
-	case EHZEGGANI_DEFEATED
+	case BPZEGGANI_DEFEATED
 		temp0 = object.animationTimer
 		temp0 >>= 5
 		temp0 += 4
@@ -508,11 +508,11 @@ event ObjectDraw
 		DrawSpriteFX(temp0, FX_FLIP, object.xpos, object.ypos)
 		break
 
-	case EHZEGGANI_TOASTED
+	case BPZEGGANI_TOASTED
 		DrawSpriteFX(5, FX_FLIP, object.xpos, object.ypos)
 		break
 
-	case EHZEGGANI_PANIC
+	case BPZEGGANI_PANIC
 		temp0 = object.animationTimer
 		temp0 >>= 3
 
@@ -533,11 +533,11 @@ end event
 
 
 event ObjectStartup
-	// Check if in EHZ
+	// Check if in BPZ
 	CheckCurrentStageFolder("Zone01")
 	if checkResult == true
-		// Load EHZ stuff
-		LoadSpriteSheet("EHZ/Objects.gif")
+		// Load BPZ stuff
+		LoadSpriteSheet("BPZ/Objects.gif")
 		
 		// Eggman Frames
 		SpriteFrame(-28, -28, 60, 20, 70, 155)
@@ -630,7 +630,7 @@ end event
 event RSDKLoad
 	CheckCurrentStageFolder("Zone01")
 	if checkResult == true
-		LoadSpriteSheet("EHZ/Objects.gif")
+		LoadSpriteSheet("BPZ/Objects.gif")
 		SpriteFrame(-28, -28, 60, 20, 70, 155)
 		SpriteFrame(-32, -8, 64, 29, 0, 209)
 	else

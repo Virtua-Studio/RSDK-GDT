@@ -13,16 +13,16 @@ private alias object.value0 : object.timer
 private alias object.value1 : object.isOOB
 
 // States
-private alias 0 : EHZEGGMANDRILL_ATTATCHED
-private alias 1 : EHZEGGMANDRILL_IDLE
-private alias 2 : EHZEGGMANDRILL_FIRED
+private alias 0 : BPZEGGMANDRILL_ATTATCHED
+private alias 1 : BPZEGGMANDRILL_IDLE
+private alias 2 : BPZEGGMANDRILL_FIRED
 
 // Eggman Car Aliases
 private alias object.state 	: eggmanCar.state
 private alias object.value1	: eggmanCar.drawPos.y
 
 // Eggman Car States
-private alias 1 : EHZEGGMANCAR_EGGMANENTER
+private alias 1 : BPZEGGMANCAR_EGGMANENTER
 
 
 // ========================
@@ -31,7 +31,7 @@ private alias 1 : EHZEGGMANCAR_EGGMANENTER
 
 event ObjectUpdate
 	switch object.state
-	case EHZEGGMANDRILL_ATTATCHED
+	case BPZEGGMANDRILL_ATTATCHED
 		object.xpos = object[-1].xpos
 		if object.direction == FLIP_NONE
 			object.xpos -= 0x360000
@@ -42,7 +42,7 @@ event ObjectUpdate
 		object.ypos = eggmanCar[-1].drawPos.y
 		object.ypos += 0x80000
 
-		if eggmanCar[-1].state > EHZEGGMANCAR_EGGMANENTER
+		if eggmanCar[-1].state > BPZEGGMANCAR_EGGMANENTER
 			object.timer++
 			if object.timer == 18
 				object.timer = 0
@@ -53,10 +53,10 @@ event ObjectUpdate
 		end if
 		break
 
-	case EHZEGGMANDRILL_IDLE
+	case BPZEGGMANDRILL_IDLE
 		break
 
-	case EHZEGGMANDRILL_FIRED
+	case BPZEGGMANDRILL_FIRED
 		object.xpos += object.xvel
 
 		object.timer++
@@ -78,7 +78,7 @@ event ObjectUpdate
 		
 	end switch
 
-	if eggmanCar[-1].state > EHZEGGMANCAR_EGGMANENTER
+	if eggmanCar[-1].state > BPZEGGMANCAR_EGGMANENTER
 		foreach (GROUP_PLAYERS, currentPlayer, ACTIVE_ENTITIES)
 			BoxCollisionTest(C_TOUCH, object.entityPos, -8, -8, 8, 8, currentPlayer, C_BOX, C_BOX, C_BOX, C_BOX)
 			if checkResult == true
@@ -97,7 +97,7 @@ end event
 event ObjectStartup
 	CheckCurrentStageFolder("Zone01")
 	if checkResult == true
-		LoadSpriteSheet("EHZ/Objects.gif")
+		LoadSpriteSheet("BPZ/Objects.gif")
 		
 		// Drill Frames
 		SpriteFrame(-16, -12, 32, 23, 94, 131)
@@ -126,7 +126,7 @@ end event
 event RSDKLoad
 	CheckCurrentStageFolder("Zone01")
 	if checkResult == true
-		LoadSpriteSheet("EHZ/Objects.gif")
+		LoadSpriteSheet("BPZ/Objects.gif")
 		SpriteFrame(-16, -12, 32, 23, 94, 131)
 	else
 		LoadSpriteSheet("MBZ/Objects.gif")
