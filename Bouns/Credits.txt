@@ -1,0 +1,19 @@
+Klashicola - Level desgin (its rough but it works) and the Idea.
+
+Twanvanb1 - Parallax, Script Generator and additional Help
+
+Geared - Extended Camera and  title card
+
+SS - For the Sleeping Sonic Team Sprite.
+
+REMS - For existing. 
+
+RubberDuckyCooly - For Making The RSDK Decomps, without they're Work GDT wouldent Be possible.
+
+SEGA/The Taxman/and Headcannon (Simon Thomley) - For Making the Sonic 1 and 2 Retro Engine Ports. 
+
+This Project Was made With Love and I hope it becomes a great learning tool for People who want to get started in RetroScript.
+
+Thank you, and Happy Coding!
+
+-KC (Klashicola)
