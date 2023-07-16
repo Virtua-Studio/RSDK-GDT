@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="left">
+  <Images>
+    <ImageFromSheet id="left" sheet="MPZ/Objects.gif" sourcex="111" sourcey="83" width="32" height="8">
+      <Offset X="-8" Y="-32"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="right" sheet="MPZ/Objects.gif" sourcex="100" sourcey="126" width="32" height="8">
+      <Offset X="-8" Y="-32"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Frame" description="Which sprite this object should display." type="frames" startbit="0" length="1" />
+  </Properties>
+  <Enums>
+    <Enum name="frames">
+      <EnumMember name="Left Frame" />
+      <EnumMember name="Right Frame" />
+    </Enum>
+  </Enums>
+  <Display>
+    <DisplayOption>
+      <Condition property="Frame" value="Left Frame" />
+      <ImageRef image="left" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Frame" value="Right Frame" />
+      <ImageRef image="right" />
+    </DisplayOption>
+  </Display>
+  <Subtypes>
+    <Subtype id="00" name="Left Frame" image="left" />
+    <Subtype id="01" name="Right Frame" image="right" />
+  </Subtypes>
+</ObjDef>

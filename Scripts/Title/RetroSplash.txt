@@ -1,0 +1,163 @@
+// ----------------------------------
+// RSDK Project:Project Virtua
+// Script Description: RSDK VT SPLASH SCREEN (and RSDK V5U lock out)
+// Script Author: Geared/Klashicola
+// ----------------------------------
+
+// ========================
+// Aliases
+// ========================
+
+private alias object.value0 : object.whatever
+
+// States
+private alias 0 : RETROLOGO_INITIALISE
+private alias 1 : RETROLOGO_FADEFROMBLACK
+private alias 2 : RETROLOGO_WAIT
+private alias 3 : RETROLOGO_FADETOBLACK
+
+// Stats Aliases
+private alias 0 : TYPE_RETROLOGO
+
+// Variables
+private alias object.type			 :	logo.type
+private alias object.state			 :	logo.state
+private alias object.ixpos			 :	logo.ixpos			// Screen space position (1 == 1)
+private alias object.iypos			 :	logo.iypos
+private alias object.priority		 :	logo.priority
+
+// Priority
+public alias 0 : PRIORITY_BOUNDS
+public alias 1 : PRIORITY_ACTIVE
+public alias 2 : PRIORITY_ALWAYS
+public alias 3 : PRIORITY_XBOUNDS
+public alias 4 : PRIORITY_XBOUNDS_DESTROY
+public alias 5 : PRIORITY_INACTIVE
+public alias 6 : PRIORITY_BOUNDS_SMALL
+public alias 7 : PRIORITY_ACTIVE_SMALL
+
+// Player List Pos Aliases
+private alias 2 : PLAYER_KNUX_ALONE
+
+
+// ========================
+// Events
+// ========================
+
+event ObjectUpdate
+		switch object.state
+		case RETROLOGO_INITIALISE
+			LoadPalette("RetroLogo.act", 0, 0, 0, 256)
+			logo.state = 1
+			object.whatever = 256
+			SetScreenFade(0x00, 0x00, 0x00, 0xFF, 0x00, 0xFF)
+			break
+
+		case RETROLOGO_FADEFROMBLACK
+			if object.whatever > 0
+				object.whatever -= 4
+			else
+				logo.state = 2
+			end if
+			SetScreenFade(0x00, 0x00, 0x00, object.whatever, 0x00, 0xFF)
+			break
+
+		case RETROLOGO_WAIT
+			object.whatever++
+			if object.whatever == 180
+				object.whatever = 0
+				logo.state = 3
+			end if
+			break
+
+		case RETROLOGO_FADETOBLACK
+			if object.whatever < 256
+				object.whatever += 4
+				SetScreenFade(0x00, 0x00, 0x00, object.whatever, 0x00, 0xFF)
+			else
+				object.whatever = 0
+				logo.state = 0
+				logo.type++
+				else
+				ResetObjectEntity(object.entityPos, TypeName[ST Screen], 0, object.xpos, object.ypos)
+				SetScreenFade(0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
+			end if
+			#endplatform
+			#platform: USE_ORIGINS
+			LoadPalette("errorscreen.act", 0, 0, 0, 256)
+			#endplatform
+			break
+			
+		end switch
+end event
+
+
+event ObjectDraw
+	DrawSprite(0)
+end event
+
+
+event ObjectStartup
+switch engine.deviceType
+case STANDARD
+	LoadSpriteSheet("Title/RetroLogo.gif")
+	SpriteFrame(-215, -120, 424, 240, 0, 0) // #1 - The Logo itself
+	break
+case MOBILE
+    LoadSpriteSheet("Title/RetroLogoMobile.gif")
+	SpriteFrame(-215, -120, 624, 240, 0, 0) // #2 - The Logo itself (mobile)
+     break
+end switch
+
+if screen.xsize == 320
+  LoadSpriteSheet("Title/RetroLogoClassic.gif")
+  SpriteFrame(-215, -120, 324, 240, 0, 0) // #3 - The Logo itself (classic) 
+end if
+
+	//Setup any Retro Logo
+	//Objects that are present in the level
+	
+	arrayPos0 = 32
+	while ArrayPos0<1056
+		if logo[arrayPos0].type == TYPE_RETROLOGO
+			logo[arrayPos0].priority = PRIORITY_ACTIVE
+			logo[arrayPos0].ixpos = 160
+			logo[arrayPos0].iypos = 120
+		end if
+		arrayPos0++
+	loop
+	
+	// Hide touch controls
+	options.touchControls = false
+end event
+
+
+// ========================
+// Editor Events
+// ========================
+
+event RSDKDraw
+	DrawSprite(0)
+end event
+
+
+event RSDKLoad
+switch engine.deviceType
+case STANDARD
+	LoadSpriteSheet("Title/RetroLogo.gif")
+	SpriteFrame(0, 0, 424, 240, 0, 0) // #1 - The Logo itself
+	break
+	case MOBILE
+    LoadSpriteSheet("Title/RetroLogoMobile.gif")
+    SpriteFrame(-0, 0, 624, 240, 0, 0) // #2 - The Logo itself (mobile)
+    break
+end switch
+
+if screen.xsize == 320
+  LoadSpriteSheet("Title/RetroLogoClassic.gif")
+  SpriteFrame(0, 0, 0, 320, 240, 0, 0)	// #3 - The Logo itself (classic) 
+end if
+  
+  
+	SetVariableAlias(ALIAS_VAR_PROPVAL, "unused")
+end event

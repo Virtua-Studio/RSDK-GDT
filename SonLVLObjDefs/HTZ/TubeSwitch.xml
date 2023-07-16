@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org">
+  <Images>
+    <ImageFromSheet id="tbox" sheet="Global/Display.gif" sourcex="168" sourcey="18" width="16" height="16">
+      <Offset X="-8" Y="-8"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Behaviour" description="How this Tube Switch should act." type="behaviours" startbit="0" length="8" />
+  </Properties>
+  <Enums>
+    <Enum name="behaviours">
+      <EnumMember name="Enter From Left" />
+      <EnumMember name="Enter From Right" />
+    </Enum>
+  </Enums>
+  <ImageSets>
+    <ImageSet id="tubeswitch">
+      <ImageRef image="tbox">
+        <Offset X="-8" Y="-8" />
+      </ImageRef>
+      <ImageRef image="tbox">
+        <Offset X="-8" Y="8" />
+      </ImageRef>
+      <ImageRef image="tbox">
+        <Offset X="8" Y="-8" />
+      </ImageRef>
+      <ImageRef image="tbox">
+        <Offset X="8" Y="8" />
+      </ImageRef>
+    </ImageSet>
+  </ImageSets>
+  <DefaultImage>
+    <ImageSetRef set="tubeswitch" />
+  </DefaultImage>
+  <Subtypes>
+    <Subtype id="00" name="Enter From Left">
+      <ImageSetRef set="tubeswitch" />
+    </Subtype>
+    <Subtype id="01" name="Enter From Right">
+      <ImageSetRef set="tubeswitch" />
+    </Subtype>
+  </Subtypes>
+</ObjDef>

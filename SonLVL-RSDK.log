@@ -1,0 +1,149 @@
+Operating system: Microsoft Windows NT 6.2.9200.0
+Opening game "C:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVL.ini"...
+Game type is V4.
+Loading Blueprint Zone ...
+Loading object definition file "SonLVLObjDefs\2PVS.ini".
+Loading object definition file "SonLVLObjDefs\Animals.ini".
+Loading object definition file "SonLVLObjDefs\ARZ.ini".
+Loading object definition file "SonLVLObjDefs\CNZ.ini".
+Loading object definition file "SonLVLObjDefs\Continue.ini".
+Loading object definition file "SonLVLObjDefs\CPZ.ini".
+Loading object definition file "SonLVLObjDefs\Credits.ini".
+Loading object definition file "SonLVLObjDefs\DEZ.ini".
+Loading object definition file "SonLVLObjDefs\EHZ.ini".
+Loading object definition file "SonLVLObjDefs\Ending.ini".
+Loading object definition file "SonLVLObjDefs\Enemies.ini".
+Loading object definition file "SonLVLObjDefs\Global.ini".
+Loading object definition file "SonLVLObjDefs\HPZ.ini".
+Loading object definition file "SonLVLObjDefs\HTZ.ini".
+Loading object definition file "SonLVLObjDefs\LevelSelect.ini".
+Loading object definition file "SonLVLObjDefs\MBZ.ini".
+Loading object definition file "SonLVLObjDefs\MCZ.ini".
+Loading object definition file "SonLVLObjDefs\Mission.ini".
+Loading object definition file "SonLVLObjDefs\MPZ.ini".
+Loading object definition file "SonLVLObjDefs\OOZ.ini".
+Loading object definition file "SonLVLObjDefs\Players.ini".
+Loading object definition file "SonLVLObjDefs\SCZ.ini".
+Loading object definition file "SonLVLObjDefs\Special.ini".
+Loading object definition file "SonLVLObjDefs\Title.ini".
+Loading object definition file "SonLVLObjDefs\WFZ.ini".
+Loading ObjectDefinition type S2ObjectDefinitions.Global.Spikes from "SonLVLObjDefs\Global\Spikes.cs"...
+Compiling code file...
+Loading ObjectDefinition type S2ObjectDefinitions.Global.PSwitch_H from "SonLVLObjDefs\Global\PSwitch_H.cs"...
+Compiling code file...
+Loading ObjectDefinition type S2ObjectDefinitions.Global.PSwitch_V from "SonLVLObjDefs\Global\PSwitch_V.cs"...
+Compiling code file...
+Loading ObjectDefinition type S2ObjectDefinitions.Global.InvisibleBlock from "SonLVLObjDefs\Global\InvisibleBlock.cs"...
+Compiling code file...
+Loading ObjectDefinition type S2ObjectDefinitions.Enemies.Masher from "SonLVLObjDefs\Enemies\Generic.cs"...
+Loading ObjectDefinition type S2ObjectDefinitions.Enemies.BuzzerShot from "SonLVLObjDefs\Enemies\Generic.cs"...
+Compiling code file...
+Compiling code file...
+Loading ObjectDefinition type S2ObjectDefinitions.Enemies.Bee from "SonLVLObjDefs\Enemies\Bee.cs"...
+Compiling code file...
+Loading ObjectDefinition type S2ObjectDefinitions.Enemies.BuzzerShot from "SonLVLObjDefs\Enemies\Generic.cs"...
+Compiling code file...
+Loading ObjectDefinition type S2ObjectDefinitions.EHZ.BurningLog from "SonLVLObjDefs\EHZ\Generic.cs"...
+Compiling code file...
+Loading ObjectDefinition type S2ObjectDefinitions.Enemies.Coconuts from "SonLVLObjDefs\Enemies\Generic.cs"...
+Compiling code file...
+Compile succeeded.
+Compile succeeded.
+Compile succeeded.
+Compile succeeded.
+Compile failed.
+Errors:
+error CS0042: Unexpected error creating debug information file 'c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\dllcache\S2ObjectDefinitions.Enemies.BuzzerShot.PDB' -- 'c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\dllcache\S2ObjectDefinitions.Enemies.BuzzerShot.pdb: The process cannot access the file because it is being used by another process.
+
+Loading ObjectDefinition type S2ObjectDefinitions.Enemies.Snail from "SonLVLObjDefs\Enemies\Snail.cs"...
+Compiling code file...
+Compile succeeded.
+Compile succeeded.
+Compile succeeded.
+Compile succeeded.
+Compile succeeded.
+Compile succeeded.
+System.AggregateException: One or more errors occurred. ---> System.ArgumentException: Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   at SonicRetro.SonLVL.API.BitmapBits.GetSection(Int32 x, Int32 y, Int32 width, Int32 height)
+   at S2ObjectDefinitions.Enemies.Masher.GetFrame() in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Generic.cs:line 236
+   at S2ObjectDefinitions.Enemies.Generic.Init(ObjectData data) in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Generic.cs:line 397
+   at SonicRetro.SonLVL.API.LevelData.MakeObjectDefinition(ObjectInfo objinf)
+   at SonicRetro.SonLVL.API.LevelData.<>c__DisplayClass73_0.<InitObjectDefinitions>b__2(ValueTuple`2 group)
+   at System.Threading.Tasks.Parallel.<>c__DisplayClass42_0`2.<PartitionerForEachWorker>b__1()
+   at System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   at System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object <p0>)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Parallel.PartitionerForEachWorker[TSource,TLocal](Partitioner`1 source, ParallelOptions parallelOptions, Action`1 simpleBody, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   at SonicRetro.SonLVL.API.LevelData.InitObjectDefinitions()
+   at SonicRetro.SonLVL.API.LevelData.LoadLevel(StageInfo stage)
+   at SonicRetro.SonLVL.GUI.MainForm.LoadLevelPart2(LevelStuff argument)
+   at SonicRetro.SonLVL.GUI.MainForm.backgroundLevelLoader_DoWork(Object sender, DoWorkEventArgs e)
+---> (Inner Exception #0) System.ArgumentException: Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   at SonicRetro.SonLVL.API.BitmapBits.GetSection(Int32 x, Int32 y, Int32 width, Int32 height)
+   at S2ObjectDefinitions.Enemies.Masher.GetFrame() in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Generic.cs:line 236
+   at S2ObjectDefinitions.Enemies.Generic.Init(ObjectData data) in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Generic.cs:line 397
+   at SonicRetro.SonLVL.API.LevelData.MakeObjectDefinition(ObjectInfo objinf)
+   at SonicRetro.SonLVL.API.LevelData.<>c__DisplayClass73_0.<InitObjectDefinitions>b__2(ValueTuple`2 group)
+   at System.Threading.Tasks.Parallel.<>c__DisplayClass42_0`2.<PartitionerForEachWorker>b__1()
+   at System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   at System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object <p0>)<---
+
+---> (Inner Exception #1) System.ArgumentException: Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   at SonicRetro.SonLVL.API.BitmapBits.GetSection(Int32 x, Int32 y, Int32 width, Int32 height)
+   at S2ObjectDefinitions.EHZ.BurningLog.GetSprite() in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\EHZ\Generic.cs:line 33
+   at S2ObjectDefinitions.EHZ.Generic.Init(ObjectData data) in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\EHZ\Generic.cs:line 124
+   at SonicRetro.SonLVL.API.LevelData.MakeObjectDefinition(ObjectInfo objinf)
+   at SonicRetro.SonLVL.API.LevelData.<>c__DisplayClass73_0.<InitObjectDefinitions>b__2(ValueTuple`2 group)
+   at System.Threading.Tasks.Parallel.<>c__DisplayClass42_0`2.<PartitionerForEachWorker>b__1()
+   at System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   at System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object <p0>)<---
+
+---> (Inner Exception #2) System.ArgumentException: Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   at SonicRetro.SonLVL.API.BitmapBits.GetSection(Int32 x, Int32 y, Int32 width, Int32 height)
+   at S2ObjectDefinitions.Enemies.Bee.Init(ObjectData data) in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Bee.cs:line 20
+   at SonicRetro.SonLVL.API.LevelData.MakeObjectDefinition(ObjectInfo objinf)
+   at SonicRetro.SonLVL.API.LevelData.<>c__DisplayClass73_0.<InitObjectDefinitions>b__2(ValueTuple`2 group)
+   at System.Threading.Tasks.Parallel.<>c__DisplayClass42_0`2.<PartitionerForEachWorker>b__1()
+   at System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   at System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object <p0>)<---
+
+---> (Inner Exception #3) System.ArgumentException: Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   at SonicRetro.SonLVL.API.BitmapBits.GetSection(Int32 x, Int32 y, Int32 width, Int32 height)
+   at S2ObjectDefinitions.Enemies.BuzzerShot.GetFrame() in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Generic.cs:line 85
+   at S2ObjectDefinitions.Enemies.Generic.Init(ObjectData data) in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Generic.cs:line 397
+   at SonicRetro.SonLVL.API.LevelData.MakeObjectDefinition(ObjectInfo objinf)
+   at SonicRetro.SonLVL.API.LevelData.<>c__DisplayClass73_0.<InitObjectDefinitions>b__2(ValueTuple`2 group)
+   at System.Threading.Tasks.Parallel.<>c__DisplayClass42_0`2.<PartitionerForEachWorker>b__1()
+   at System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   at System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object <p0>)<---
+
+---> (Inner Exception #4) System.ArgumentException: Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   at SonicRetro.SonLVL.API.BitmapBits.GetSection(Int32 x, Int32 y, Int32 width, Int32 height)
+   at S2ObjectDefinitions.Enemies.Coconuts.GetFrame() in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Generic.cs:line 160
+   at S2ObjectDefinitions.Enemies.Generic.Init(ObjectData data) in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Generic.cs:line 397
+   at SonicRetro.SonLVL.API.LevelData.MakeObjectDefinition(ObjectInfo objinf)
+   at SonicRetro.SonLVL.API.LevelData.<>c__DisplayClass73_0.<InitObjectDefinitions>b__2(ValueTuple`2 group)
+   at System.Threading.Tasks.Parallel.<>c__DisplayClass42_0`2.<PartitionerForEachWorker>b__1()
+   at System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   at System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object <p0>)<---
+
+---> (Inner Exception #5) System.ArgumentException: Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   at SonicRetro.SonLVL.API.BitmapBits.GetSection(Int32 x, Int32 y, Int32 width, Int32 height)
+   at S2ObjectDefinitions.Enemies.Snail.Init(ObjectData data) in c:\Users\romeo\Documents\GitHub\RSDK-GDT\SonLVLObjDefs\Enemies\Snail.cs:line 20
+   at SonicRetro.SonLVL.API.LevelData.MakeObjectDefinition(ObjectInfo objinf)
+   at SonicRetro.SonLVL.API.LevelData.<>c__DisplayClass73_0.<InitObjectDefinitions>b__2(ValueTuple`2 group)
+   at System.Threading.Tasks.Parallel.<>c__DisplayClass42_0`2.<PartitionerForEachWorker>b__1()
+   at System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   at System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object <p0>)<---
+

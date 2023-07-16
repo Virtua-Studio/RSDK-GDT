@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="seal">
+  <Images>
+    <ImageFromSheet id="seal" sheet="SCZ/Objects2.gif" sourcex="1" sourcey="193" width="64" height="32">
+      <Offset X="-32" Y="-16" />
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Update TileLayer" description="If this Hull Seal should update the Foreground Tile Layer upon player interaction." type="bool" startbit="0" length="8" />
+  </Properties>
+  <Subtypes>
+    <Subtype id="00" name="Don't Update TileLayer" image="seal" />
+    <Subtype id="01" name="Update TileLayer" image="seal" />
+  </Subtypes>
+</ObjDef>

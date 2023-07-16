@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="trigger">
+  <Images>
+    <ImageFromSheet id="trigger" sheet="Global/Display.gif" sourcex="168" sourcey="18" width="16" height="16">
+      <Offset X="-8" Y="-8"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Bumper Type" type="types" startbit="0" length="8" />
+  </Properties>
+  <Enums>
+    <Enum name="types">
+      <EnumMember name="Small (Facing Left)" />
+      <EnumMember name="Small (Facing Right)" />
+      <EnumMember name="Large (Facing Up)" />
+      <EnumMember name="Large (Facing Down)" />
+      <EnumMember name="Large (Facing Left)" />
+      <EnumMember name="Large (Facing Right)" />
+    </Enum>
+  </Enums>
+</ObjDef>

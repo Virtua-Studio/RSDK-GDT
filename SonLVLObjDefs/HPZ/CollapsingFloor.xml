@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="cfloor">
+  <Images>
+    <ImageFromSheet id="cfloor" sheet="HPZ/Objects.gif" sourcex="66" sourcey="223" width="96" height="32">
+      <Offset X="-48" Y="-16" />
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Solidity" description="What solidity type this platform should be." type="solidities" startbit="1" length="1" />
+  </Properties>
+  <Enums>
+	<Enum name="solidities">
+	  <EnumMember name="Top Solid" />
+	  <EnumMember name="All Solid" />
+	</Enum>
+  </Enums>
+  <Subtypes>
+    <Subtype id="00" name="Top Solid" image="cfloor" />
+    <Subtype id="02" name="All Solid" image="cfloor" />
+  </Subtypes>
+</ObjDef>

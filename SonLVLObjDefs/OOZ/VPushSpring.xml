@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="spring">
+  <Images>
+    <ImageFromSheet id="spring" sheet="OOZ/Objects.gif" sourcex="239" sourcey="140" width="32" height="40">
+      <Offset X="-16" Y="-20"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="ball" sheet="OOZ/Objects.gif" sourcex="429" sourcey="190" width="32" height="32">
+      <Offset X="-16" Y="-16"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Has Ball" description="If this Spring has a Ball." type="bool" startbit="0" length="8" />
+  </Properties>
+  <Display>
+    <DisplayOption>
+      <Condition property="Has Ball" value="true" />
+      <ImageRef image="spring" />
+      <ImageRef image="ball" >
+        <Offset Y="-36" />
+      </ImageRef>
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Has Ball" value="false" />
+      <ImageRef image="spring" />
+    </DisplayOption>
+  </Display>
+  <ImageSets>
+    <ImageSet id="noball">
+      <ImageRef image="spring" />
+    </ImageSet>
+    <ImageSet id="hasball">
+      <ImageRef image="spring" />
+      <ImageRef image="ball">
+        <Offset Y="-36" />
+      </ImageRef>
+    </ImageSet>
+  </ImageSets>
+  <Subtypes>
+    <Subtype id="00" name="No Ball">
+      <ImageSetRef set="noball" />
+    </Subtype>
+    <Subtype id="01" name="Has Ball">
+      <ImageSetRef set="hasball" />
+    </Subtype>
+  </Subtypes>
+</ObjDef>
