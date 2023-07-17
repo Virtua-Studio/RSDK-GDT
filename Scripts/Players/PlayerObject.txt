@@ -1,7 +1,7 @@
 // ----------------------------------
 // RSDK Project: Project Virtua 
 // Script Description: Player Object Object
-// Script Author: Geared/Ported By Klashicola
+// Script Author: Geared, Klashicola, Twanvanb1
 // ----------------------------------
 
 // ========================
@@ -210,7 +210,7 @@ private alias object.value11 : player.scrollDelay			// A timer of how long the c
 private alias object.value12 : player.tailFrame				// One of Tails's tail values, not used by the player itself
 private alias object.value13 : player.tailAnim				// Also one of Tails's tail values
 private alias object.value14 : player.skidding
-// value15 is unused
+private alias object.value15 : player.actionPeelout
 private alias object.value16 : player.isSidekick			// true if an AI character (P2 in singleplayer), false otherwise (P1, P2 in 2PVS)
 private alias object.value17 : debugMode.currentSelection
 private alias object.value18 : player.sortedDrawOrder
@@ -338,6 +338,8 @@ reserve function Player_TryTransform
 reserve function Player_State_BubbleBounce
 reserve function Player_Action_DblJumpSonic
 reserve function Player_HandleFlyCarry
+reserve function Player_State_Peelout
+reserve function Player_Action_Peelout
 
 
 // ========================
@@ -2107,6 +2109,74 @@ public function Player_Action_Jump
 #endplatform
 end function
 
+public function Player_Action_Peelout	
+	player.state		= Player_State_Peelout
+	player.abilityTimer = 0
+	PlaySfx(SfxName[Peelout Charge], false) 	
+end function
+
+
+public function Player_State_Peelout
+	// Cancels the Peel Out, keeps the camera
+	if Player.Gravity == GRAVITY_AIR
+
+		player.state = Player_State_Air
+
+		player.speed = 0
+	end if
+	
+	// Charge
+	if player.gravityStrength == 0x1000
+		if player.abilityTimer < 0x60000
+			player.abilityTimer += 0x8500
+		end if
+	else
+		if player.abilityTimer < 0xC0000
+			player.abilityTimer += 0x8500
+		end if
+	end if
+	
+	// Speed building, from walking to running then peelout
+	if player.abilityTimer < 0x5F5C2
+		player.animation = ANI_WALKING
+		temp0   = player.abilityTimer
+		temp0 >>= 16
+		temp0  *= 80
+		temp0  /= 6
+		temp0  += 20
+	else
+		temp0   = player.abilityTimer
+		temp0 >>= 16
+		temp0  *= 80
+		temp0  /= 6
+		if player.abilityTimer > 0x9FFFF
+			player.animation = ANI_PEELOUT
+		else
+			player.animation = ANI_RUNNING
+		end if
+	end if
+	
+	// Release
+	if player.up == false
+		player.scrollDelay = 15
+		screen.camerastyle = CAMERASTYLE_HLOCKED
+
+		player.state = Player_State_Ground
+		// Cancels the peel out if you didn't charged it enough
+		if player.abilityTimer < 0x5F5C2
+			player.speed = 0
+		else
+			player.speed = player.abilityTimer
+			if player.direction == FACING_LEFT
+				FlipSign(player.speed)
+			end if
+
+			PlaySfx(SfxName[Peelout Release], false) 
+		end if
+		CallFunction(Player_HandleOnGround)
+	end if
+	player.animationSpeed = temp0
+end function
 
 public function Player_Action_Spindash
 	player.state = Player_State_Spindash
@@ -3162,7 +3232,7 @@ public function Player_State_LookUp
 			player.timer = 0
 		else
 			if player.jumpPress == true
-				CallFunction(Player_Action_Jump)
+				CallFunction(player.actionPeelout)
 			end if
 		end if
 	end if
@@ -5203,7 +5273,8 @@ event ObjectStartup
 			player[SLOT_PLAYER1].character 		= PLAYER_SONIC_ALONE
 			player[SLOT_PLAYER1].jumpOffset 	= -5
 			player[SLOT_PLAYER1].jumpAbility 	= Player_Action_DblJumpSonic
-			ANI_PEELOUT 			= ANI_RUNNING
+			player[SLOT_PLAYER1].actionPeelout = Player_Action_Peelout
+			//ANI_PEELOUT 			= ANI_RUNNING
 			break
 
 		case PLAYER_TAILS_ALONE
