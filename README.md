@@ -5,7 +5,7 @@ A Simple Template For Retro Engine for V4 VT and V5Ulimate
 # **SUPPORT THE DEVELOPERS OF THE RETRO ENGINE**
 We do not own the Retro Engine in any way, shape or form, and this project would not have been possible had they not developed RSDK in the first place. Retro Engine is currently owned by [Evening Star](https://eveningstar.studio/); we highly urge you to follow & support their projects if you enjoyed this project of ours!
 
-## **DO NOT USE THIS PROJECT AS A MEANS TO RUN SONIC 2 OR 1 MODS.*
+## ***DO NOT USE THIS PROJECT AS A MEANS TO RUN SONIC 2 OR 1 MODS.***
 This Project is NOT a "free Replacement" for existing mods, dont tell us if your Sonic 2 palette swap doesnt work in GDT.
 
 # Additional Features
@@ -14,7 +14,8 @@ This Project is NOT a "free Replacement" for existing mods, dont tell us if your
 * Drop dash from Sonic mania/origins
 
 # How to run
-Get the RSDK Decomp
+* Get the RSDK Decomp
+* Download the Build from RELEASES, not the source!
 # Compatible Versions
 * [RSDK V4](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation)
 * [RSDK VT (Custom Version of V4 by Virtua Studio)](https://github.com/Sonic-Geared/RSDK-VT)
