@@ -11,7 +11,8 @@ This Project is NOT a "free Replacement" for existing mods, dont tell us if your
 # Additional Features
 * The Extended Camera From Sonic CD
 * Peelout form CD
-* Drop dash from Sonic mania/origins
+* Drop dash from Sonic Origins
+* Roll Jump Lock removed
 
 # How to run
 * Get the RSDK Decomp
