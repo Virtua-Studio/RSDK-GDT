@@ -180,6 +180,8 @@ event ObjectUpdate
 		if temp0 == true
 			CheckEqual(player[currentPlayer].animation, ANI_JUMPING)
 			temp0 = checkResult
+			CheckEqual(player[currentPlayer].animation, ANI_DROPDASH)
+			temp0 = checkResult
 			CheckEqual(player[currentPlayer].animation, ANI_GLIDING)
 			temp0 |= checkResult
 			CheckEqual(player[currentPlayer].animation, ANI_GLIDING_STOP)
