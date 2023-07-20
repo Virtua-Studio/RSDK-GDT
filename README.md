@@ -18,18 +18,18 @@ This Project is NOT a "free Replacement" for existing mods, dont tell us if your
 * Get the RSDK Decomp
 * Download the Build from RELEASES, not the source!
 # Compatible Versions
-* [RSDK V4](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation)
+* [RSDK v4](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation)
 * [RSDK VT (Custom Version of V4 by Virtua Studio)](https://github.com/Sonic-Geared/RSDK-VT)
-* [V5Ulimate](https://github.com/Rubberduckycooly/RSDKv5-Decompilation)
+* [RSDKv5 Ultimate](https://github.com/Rubberduckycooly/RSDKv5-Decompilation)
   
 # FAQ
 You can find the FAQ [here](./FAQ.md).
 
 # Special Thanks
-* The Team Behind The [RSDK Decomp Project](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation) without them GDT wouldn't be possible
-* [Twanvanb1](https://github.com/Twanvanb1) For bugfixes,Porting the Peelout and Fixing my Shitty level desgin in 1.1)
-* [DonZombpepoGames](https://github.com/DonZombpepoGames) for extra help
-* [zerothecat4564](https://github.com/zerothecat4564)Porting the Drop dash(V5U only), and helping with making template files for the game.
+* The Team Behind The [RSDK Decomp Project](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation) Without them GDT wouldn't be possible.
+* [Twanvanb1](https://github.com/Twanvanb1) For bugfixes, Porting the Peelout and Fixing my Shitty level desgin in 1.1.
+* [DonZombpepoGames](https://github.com/DonZombpepoGames) For extra help.
+* [zerothecat4564](https://github.com/zerothecat4564) For helping making templates for various files.
 * [Klashicola (Hey thats me!)](https://github.com/youngerelk1) For Starting the project. 
 * Everyone in the [Retro Engine Modding Server](https://dc.railgun.works/retroengine) For Being Amazing!
 
