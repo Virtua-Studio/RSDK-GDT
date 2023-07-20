@@ -1,0 +1,5 @@
+In this folder we have some mods for GDT (load them as a mods, because some things, like the game.xml won't load in the
+root data folder)
+
+- Game xml: this is a small example on how to use a game.xml file for adding things to the GameConfig file without altering
+it. This example adds Amy and her palette to be playable (her assets are in the root data and scripts folders)
