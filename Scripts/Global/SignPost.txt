@@ -32,11 +32,8 @@ private alias object.propertyValue 	: player.character
 private alias object.xpos 			: player.xpos
 private alias object.ypos 			: player.ypos
 private alias object.ixpos			: player.ixpos
-private alias object.speed			: player.speed
+private alias object.speed 			: player.speed
 private alias object.xvel 			: player.xvel
-private alias object.yvel 			: player.yvel
-private alias object.gravity 		: player.gravity
-private alias object.animation		: player.animation
 private alias object.controlMode 	: player.controlMode
 private alias object.scrollTracking : player.scrollTracking
 private alias object.interaction 	: player.interaction
@@ -48,7 +45,6 @@ private alias object.left 			: player.left
 private alias object.right 			: player.right
 private alias object.value7 		: player.invincibleTimer
 private alias object.value21 		: player.acceleration
-private alias object.value30		: player.jumpOffset
 
 private alias 1 : SUPERSTATE_SUPER
 private alias 2 : SUPERSTATE_FADEOUT
@@ -139,7 +135,9 @@ event ObjectUpdate
 				case PLAYER_KNUX_ALONE
 					EditFrame(5, -24, -16, 48, 32, 34, 67)
 					break
-					
+				case PLAYER_AMY_ALONE
+					EditFrame(5, -24, -16, 48, 32, 34, 149)
+					break			
 				end switch
 
 				// No achievements in debug mode!
@@ -350,11 +348,8 @@ event ObjectUpdate
 					if object.allPlayersFinished == false
 						object.allPlayersFinished = true
 						object.state = SIGNPOST_IDLE_VS
-						
-#platform: USE_STANDALONE
 						if object.lastPlayerID == 0
-							// Start spectating P2
-							camera[0].target 			= 1
+							camera[0].target 		= 1
 							player[1].scrollTracking 	= true
 							object[9].type = TypeName[Blank Object]
 							CreateTempObject(TypeName[VS Game], 0, object.xpos, object.ypos)
@@ -365,7 +360,6 @@ event ObjectUpdate
 							camera[0].ypos = player[1].ypos
 							camera[0].ypos >>= 16
 						end if
-#endplatform
 					else
 						object.state = SIGNPOST_FINISHED
 						object[30].state = VSGAME_GOTOVSRESULTS
@@ -391,7 +385,7 @@ event ObjectUpdate
 	// 212 in the line "temp0 += 212" is supposed to be the center of the screen when the screen width is set to 424 (the default screen width in RSDK)
 	// For some reason, it's set as a constant rather than using "screen.xcenter", meaning the barrier will always be 252 pixels away from the sign post regardless of screen width
 	// If your screen width is set to over 520, the barrier won't reach the edge of the screen, softlocking the game during exit stage right...
-	// We decided to provide a decomp-exclusive fix, so you shouldn't have to worry about this there
+	// We decided to provide a decomp-exclusive fix here, so you shouldn't have to worry about this
 	
 	temp0 = 40
 	temp0 += 212
@@ -414,30 +408,10 @@ event ObjectUpdate
 			player[currentPlayer].jumpPress 	= false
 			player[currentPlayer].jumpHold 		= false
 		end if
-	
-#platform: USE_DECOMP
-		// Another ultrawide screen fix, this time for when the screen is wide enough to extend beyond
-		// the stage width, causing the player to constantly fall and wrap around the stage vertically
-		if player[currentPlayer].xpos > object.xpos
-			if player[currentPlayer].gravity == GRAVITY_AIR
-				temp1 = object.ypos
-				temp1 += 0x200000 // This is quite a bit under the floor - this is because some acts have wavy ground at the end
-				if player[currentPlayer].animation == ANI_JUMPING
-					temp2 = player[currentPlayer].jumpOffset
-					temp2 <<= 16
-					temp1 -= temp2
-				end if
-				if player[currentPlayer].ypos > temp1
-					player[currentPlayer].ypos	= temp1
-					player[currentPlayer].yvel	= 0
-				end if
-			end if
-		end if
-#endplatform
 
 		if player[currentPlayer].xpos > temp0
 			player[currentPlayer].xpos 	= temp0
-			player[currentPlayer].speed	= 0
+			player[currentPlayer].speed = 0
 			player[currentPlayer].xvel 	= 0
 		end if
 
@@ -491,7 +465,7 @@ event ObjectStartup
 	
 	// #5 - Main character frame
 	//      The Sprite Frame data given here is that of Sonic's sprite, but in gameplay it's discarded in favour of using EditFrame instead
-	SpriteFrame(-24, -16, 48, 32, 34, 1)
+	SpriteFrame(-24, -16, 48, 32, 34, 149)
 	
 	// #6-8 - Spin frames (again, same as last one)
 	SpriteFrame(-16, -16, 32, 32, 149, 99)

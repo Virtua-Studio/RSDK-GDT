@@ -188,14 +188,21 @@ private function HUD_Draw_Standard
 			
 #platform: USE_STANDALONE
 			// Lives icon
-			temp0 = stage.playerListPos
-			temp0 += 15
-			DrawSpriteScreenXY(temp0, 16, 212)
+			if stage.playerListPos <= 3
+				temp0 = stage.playerListPos
+				temp0 += 15
+				DrawSpriteScreenXY(temp0, 16, 213)
+			else
+				DrawSpriteScreenXY(38, 16, 213)
+			end if
 
 			// Character text
-			temp0 += 6
-			DrawSpriteScreenXY(temp0, 33, 213)
-
+			if stage.playerListPos <= 3
+				temp0 += 6
+				DrawSpriteScreenXY(temp0, 33, 213)
+			else
+				DrawSpriteScreenXY(39,33, 213)
+			end if
 			// X between icon and number
 			DrawSpriteScreenXY(20, 38, 222)
 
@@ -304,10 +311,13 @@ private function HUD_Draw_Mobile
 
 	temp1 = screen.xsize
 	temp1 -= 64
-	temp0 = stage.playerListPos
-	temp0 += 15
-	DrawSpriteScreenXY(temp0, temp1, 8)
-
+	if stage.playerListPos <= 3
+		temp0 = stage.playerListPos
+		temp0 += 15
+		DrawSpriteScreenXY(temp0, temp1, 8)
+	else
+		DrawSpriteScreenXY(38, temp1, 8)
+	end if
 	temp1 += 17
 	temp0 += 6
 	DrawSpriteScreenXY(temp0, temp1, 9)
@@ -421,6 +431,8 @@ event ObjectStartup
 	SpriteFrame(8, 0, 8, 8, 136, 64) 	// #35 - Small debug Minus sign
 	SpriteFrame(0, 0, 8, 8, 25, 98) 	// #36 - Red X Debug Icon
 	SpriteFrame(0, 0, 8, 8, 34, 98) 	// #37 - Red Y Debug Icon
+	SpriteFrame(0, 0, 16, 16, 120, 47)
+	SpriteFrame(-4, 0, 31, 7, 217, 34)
 	
 #platform: USE_ORIGINS
 	SpriteFrame(0, 0, 16, 16, 179, 180)	// #38 - Coins life icon

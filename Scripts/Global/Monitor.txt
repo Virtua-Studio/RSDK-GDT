@@ -32,7 +32,7 @@ private alias 13 : MONITOR_TELEPORT
 private alias 14 : MONITOR_RANDOM
 private alias 15 : MONITOR_DEBUG_SHIELD
 private alias 16 : MONITOR_COUNT
-
+private alias 17 : MONITOR_1UP_AMY
 // Monitor states
 private alias 0 : MONITOR_STATE_IDLE
 private alias 1 : MONITOR_STATE_FALL
@@ -349,7 +349,7 @@ event ObjectStartup
 	SpriteFrame(-8, -9, 16, 14, 35, 156) // 16 - MONITOR_RANDOM - Random
 	SpriteFrame(-8, -9, 16, 14, 18, 171) // 17 - MONITOR_DEBUG_SHIELD - Debug Shields
 	SpriteFrame(-8, -9, 16, 14, 35, 171) // 18 - Debug Emeralds
-	
+	SpriteFrame(-8, -9, 16, 14, 18, 201) // 19 - MONITOR_1UP_AMY
 	// (The Mania monitor introduced in Origins is unused btw)
 	
 	Monitor_startDebugID = DebugMode_ObjCount
@@ -398,7 +398,13 @@ event ObjectStartup
 			end if
 		next
 	end if
-	
+	if stage.playerListPos == PLAYER_AMY_ALONE
+		foreach (TypeName[Monitor], arrayPos0, ALL_ENTITIES)
+			if object[arrayPos0].propertyValue == MONITOR_1UP_SONIC
+				object[arrayPos0].propertyValue = MONITOR_1UP_AMY
+			end if
+		next
+	end if	
 	// Only 1 life in Time Attack, remove all 1UP monitors
 	if options.gameMode == MODE_TIMEATTACK
 		foreach (TypeName[Monitor], arrayPos0, ALL_ENTITIES)

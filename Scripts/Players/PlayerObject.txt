@@ -92,6 +92,7 @@ public alias 0 : PLAYER_SONIC_ALONE
 public alias 1 : PLAYER_TAILS_ALONE
 public alias 2 : PLAYER_KNUX_ALONE
 public alias 3 : PLAYER_SONIC_AND_TAILS
+public alias 4 : PLAYER_AMY_ALONE
 // Origins's PLAYER_KNUX_AND_TAILS would technically be value 4, but Origins always just checks it like `stage.playerListPos > PLAYER_SONIC_AND_TAILS` instead
 
 // Shields
@@ -319,6 +320,7 @@ reserve function Player_ApplyShield
 reserve function Player_HandleSuperPalette_Sonic
 reserve function Player_HandleSuperPalette_Tails
 reserve function Player_HandleSuperPalette_Knux
+reserve function Player_HandleSuperPalette_Amy
 reserve function Player_UpdatePhysicsState
 reserve function Player_HandleSuperForm
 reserve function Player_CheckHit
@@ -340,7 +342,7 @@ reserve function Player_Action_DblJumpSonic
 reserve function Player_HandleFlyCarry
 reserve function Player_State_Peelout
 reserve function Player_Action_Peelout
-
+reserve function Player_Action_DblJumpAmy
 
 // ========================
 // Static Values
@@ -362,7 +364,7 @@ public value Player_attractTableSize 	= 0
 public value Player_attractFrameCount 	= 0
 public value Player_attractDuration 	= 0
 public value ANI_DROPDASH 		= 39
-
+public value ANI_HAMMERDASH	= 40
 // All these below are unused
 private value Player_unusedValue1 = 0
 private value Player_unusedValue2 = 0
@@ -459,6 +461,28 @@ public table Player_KnuxSuperAltPal
 	0x802040, 0xE04060, 0xE060A0
 end table
 
+public table Player_AmySuperPal
+	0xE080E0, 0xE060C0, 0xC040A0, 0x802060	
+	0xE0A0E0, 0xE080E0, 0xE060C0, 0xA04080
+	0xE0C0E0, 0xE0A0E0, 0xE080E0, 0xC060A0
+	0xE0E0E0, 0xE0C0E0, 0xE0A0E0, 0xE080C0
+	0xE0E0E0, 0xE0E0E0, 0xE0C0E0, 0xE0A0E0
+	0xE0E0E0, 0xE0C0E0, 0xE0A0E0, 0xE080C0
+	0xE0C0E0, 0xE0A0E0, 0xE080E0, 0xC060A0
+	0xE0A0E0, 0xE080E0, 0xE060C0, 0xA04080
+end table
+
+public table Player_AmySuperAltPal
+	0xE080E0, 0xE060C0, 0xC040A0, 0x802060	
+	0xE0A0E0, 0xE080E0, 0xE060C0, 0xA04080
+	0xE0C0E0, 0xE0A0E0, 0xE080E0, 0xC060A0
+	0xE0E0E0, 0xE0C0E0, 0xE0A0E0, 0xE080C0
+	0xE0E0E0, 0xE0E0E0, 0xE0C0E0, 0xE0A0E0
+	0xE0E0E0, 0xE0C0E0, 0xE0A0E0, 0xE080C0
+	0xE0C0E0, 0xE0A0E0, 0xE080E0, 0xC060A0
+	0xE0A0E0, 0xE080E0, 0xE060C0, 0xA04080
+end table
+
 // Each line of these physics tables store the values in this order:
 // Top Speed, Ground Acceleration, Air Acceleration, Air Deleceration, Skid Speed, Rolling Friction, Jump Strength, Jump Cap
 // Note that Ground Deceleration is not defined here, rather it's set based on Ground Acceleration
@@ -496,6 +520,16 @@ private table Player_KnuxPhysicsTable
 	0x60000, 0x0C00, 0x1800, 0x0600, 0x08000, 0x0300, 0x30000, -0x20000 // Super + Speed Shoes + Underwater
 end table
 
+private table Player_AmyPhysicsTable
+	0x60000, 0x0C00, 0x1800, 0x0600, 0x08000, 0x0600, 0x68000, -0x40000 // Normal
+	0x30000, 0x0600, 0x0C00, 0x0300, 0x04000, 0x0300, 0x38000, -0x20000 // Underwater
+	0xA0000, 0x3000, 0x6000, 0x1800, 0x10000, 0x0600, 0x80000, -0x40000 // Speed Shoes
+	0x50000, 0x1800, 0x3000, 0x0C00, 0x08000, 0x0300, 0x38000, -0x20000 // Speed Shoes + Underwater
+	0xC0000, 0x1800, 0x3000, 0x0C00, 0x08000, 0x0600, 0x68000, -0x40000 // Super
+	0x60000, 0x0C00, 0x1800, 0x0600, 0x04000, 0x0300, 0x38000, -0x20000 // Super + Underwater
+	0xC0000, 0x1800, 0x3000, 0x0C00, 0x08000, 0x0600, 0x80000, -0x40000 // Super + Speed Shoes
+	0x60000, 0x0C00, 0x1800, 0x0600, 0x04000, 0x0300, 0x38000, -0x20000 // Super + Speed Shoes + Underwater
+end table
 
 // ========================
 // Function Definitions
@@ -719,6 +753,55 @@ public function Player_HandleSuperPalette_Knux
 	SetPaletteEntry(1, 28, temp0)
 end function
 
+public function Player_HandleSuperPalette_Amy
+	if Player_superState == SUPERSTATE_SUPER
+		Player_superBlendTimer++
+		if Player_superBlendTimer >= 12
+			Player_superBlendTimer = 9
+
+			Player_superBlendClr += 3
+			if Player_superBlendClr >= 30
+				Player_superBlendTimer = 0
+				Player_superBlendClr = 0
+			end if
+		end if
+	else
+		if Player_superBlendClr > 15
+			FlipSign(Player_superBlendClr)
+			Player_superBlendClr += 30
+		end if
+
+		Player_superBlendTimer++
+		if Player_superBlendTimer >= 12
+			Player_superBlendTimer = 0
+
+			Player_superBlendClr -= 3
+			if Player_superBlendClr <= 0
+				Player_superBlendClr = 0
+				Player_superState = SUPERSTATE_NONE
+			end if
+		end if
+	end if
+
+	temp1 = Player_superBlendClr
+
+	GetTableValue(temp0, temp1, Player_AmySuperPal)
+	SetPaletteEntry(0, 50, temp0)
+	GetTableValue(temp0, temp1, Player_AmySuperAltPal)
+	SetPaletteEntry(1, 50, temp0)
+	temp1++
+
+	GetTableValue(temp0, temp1, Player_AmySuperPal)
+	SetPaletteEntry(0, 51, temp0)
+	GetTableValue(temp0, temp1, Player_AmySuperAltPal)
+	SetPaletteEntry(1, 51, temp0)
+	temp1++
+
+	GetTableValue(temp0, temp1, Player_AmySuperPal)
+	SetPaletteEntry(0, 54, temp0)
+	GetTableValue(temp0, temp1, Player_AmySuperAltPal)
+	SetPaletteEntry(1, 54, temp0)
+end function
 
 public function Player_UpdatePhysicsState
 	// Bug Details:
@@ -739,7 +822,11 @@ public function Player_UpdatePhysicsState
 	case PLAYER_KNUX_ALONE
 		temp0 = Player_KnuxPhysicsTable
 		break
-		
+
+	case PLAYER_AMY_ALONE
+		temp0 = Player_AmyPhysicsTable
+		break		
+
 	end switch
 
 	temp1 = 0
@@ -806,6 +893,10 @@ public function Player_HandleSuperForm
 		case PLAYER_KNUX_ALONE
 			CallFunction(Player_HandleSuperPalette_Knux)
 			break
+
+		case PLAYER_AMY_ALONE
+			CallFunction(Player_HandleSuperPalette_Amy)
+			break
 			
 		end switch
 	end if
@@ -861,6 +952,8 @@ public function Player_CheckHit
 	CheckNotEqual(player[currentPlayer].invincibleTimer, 0)
 	temp0 |= checkResult
 	CheckEqual(player[currentPlayer].animation, ANI_DROPDASH)
+	temp0 |= checkResult
+	CheckEqual(player[currentPlayer].animation, ANI_HAMMERDASH)
 	temp0 |= checkResult
 	// Tails can also destroy badniks when flying, but only if the badnik is above him (hitting his tails)
 	// So check for that, too
@@ -926,6 +1019,8 @@ public function Player_BadnikBreak
 	temp0 |= checkResult
 	CheckEqual(player[currentPlayer].animation, ANI_DROPDASH)
 	temp0 |= checkResult	
+	CheckEqual(player[currentPlayer].animation, ANI_HAMMERDASH)
+	temp0 |= checkResult
 	// Tails can also break badniks that are hit his tails while flying, check for that
 	CheckEqual(player[currentPlayer].animation, ANI_FLYING)
 	temp1 = checkResult
@@ -2315,6 +2410,19 @@ public function Player_State_BubbleBounce
 	end if
 end function
 
+public function Player_Action_DblJumpAmy
+	if player.jumpAbilityState == 1
+		if player.jumpPress == true
+			PlaySfx(SfxName[Jump], false)
+			player.yvel = -0x60000
+			player.jumpAbilityState = 1
+			player.animation = ANI_DROPDASH
+			if player.state == Player_State_RollJump
+				player.state = Player_State_Air
+			end if
+		end if
+	end if
+end function
 
 public function Player_Action_DblJumpSonic
 #platform: USE_ORIGINS
@@ -2682,18 +2790,14 @@ public function Player_State_Ground
 
 	CallFunction(Player_HandleGroundMovement)
 	if player.gravity == GRAVITY_AIR
-#platform: USE_STANDALONE
-		player.state = Player_State_Air_NoDropDash
-#endplatform
-#platform: USE_ORIGINS
-		player.state = Player_State_Air_NoDropDash
-#endplatform
+		player.state = Player_State_Air
 		CallFunction(Player_HandleAirMovement)
 	else
 		CallFunction(Player_HandleOnGround)
 		if player.speed == 0
-			if player.collisionMode == CMODE_FLOOR
+			if player.collisionMode == 0
 				switch player.character
+				default
 				case PLAYER_SONIC_ALONE
 					if Player_superState == SUPERSTATE_SUPER
 						player.animation = ANI_STOPPED
@@ -2722,7 +2826,7 @@ public function Player_State_Ground
 							end if
 						end if
 
-						if player.direction == FACING_RIGHT
+						if player.direction == 0
 							if player.floorSensorR == false
 								if player.floorSensorC == false
 									player.timer = 0
@@ -2801,7 +2905,7 @@ public function Player_State_Ground
 						if player.floorSensorR == false
 							player.timer = 0
 							player.animation = ANI_FLAILING1
-							if player.direction == FACING_LEFT
+							if player.direction == 1
 								player.prevAnimation = ANI_FLAILING1
 								player.frame = 4
 								player.animationTimer = 0
@@ -2813,7 +2917,7 @@ public function Player_State_Ground
 						if player.floorSensorL == false
 							player.timer = 0
 							player.animation = ANI_FLAILING1
-							if player.direction == FACING_RIGHT
+							if player.direction == 0
 								player.prevAnimation = ANI_FLAILING1
 								player.frame = 4
 								player.animationTimer = 0
@@ -2823,7 +2927,27 @@ public function Player_State_Ground
 						end if
 					end if
 					break
+				case PLAYER_AMY_ALONE
+					if player.timer < 240
+						player.animation = ANI_STOPPED
+						player.timer++
+					else
+						player.animation = ANI_WAITING
+					end if
 
+					if player.floorSensorC == false
+						if player.floorSensorR == false
+							player.timer = 0
+							player.animation = ANI_FLAILING1
+							player.direction = FACING_RIGHT
+						end if
+						if player.floorSensorL == false
+							player.timer = 0
+							player.animation = ANI_FLAILING1
+							player.direction = FACING_LEFT
+						end if
+					end if
+					break
 				end switch
 			end if
 		else
@@ -2875,7 +2999,7 @@ public function Player_State_Ground
 			end if
 		end if
 
-		if player.collisionMode == CMODE_FLOOR
+		if player.collisionMode == 0
 			if player.pushing == 2
 				player.animation = ANI_PUSHING
 				player.animationSpeed = 0
@@ -5226,9 +5350,13 @@ event ObjectStartup
 #endplatform
 		
 #platform: USE_STANDALONE
-		if stage.playerListPos >= PLAYER_SONIC_AND_TAILS // If playing as Sonic & Tails
+		if stage.playerListPos == PLAYER_SONIC_AND_TAILS // If playing as Sonic & Tails
 			stage.playerListPos = PLAYER_SONIC_ALONE
 			stage.player2Enabled = true
+		end if
+		if stage.playerListPos == PLAYER_AMY_ALONE
+			stage.playerListPos = PLAYER_AMY_ALONE
+			stage.player2Enabled = false
 		end if
 #endplatform
 		
@@ -5302,6 +5430,15 @@ event ObjectStartup
 				stage.player2Enabled = false
 			end if
 			break
+
+		case PLAYER_AMY_ALONE
+			LoadAnimation("Amy.ani")
+			CallFunction(Player_HandleSuperPalette_Amy)
+			player[SLOT_PLAYER1].character		= 3
+			player[SLOT_PLAYER1].jumpOffset = -1
+			player[SLOT_PLAYER1].jumpAbility 	= Player_Action_DblJumpAmy
+			ANI_PEELOUT 						= ANI_HAMMERDASH
+			break	
 			
 		end switch
 
