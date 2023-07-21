@@ -199,7 +199,8 @@ event ObjectUpdate
 			case MONITOR_SPEEDSHOES
 				if SpeedUpMusic != 0
 					if player[currentPlayer].speedShoesTimer == 0
-						CallFunction(SpeedUpMusic)
+						SetMusicTrack("SpeedShoes.ogg",0,0)
+							PlayMusic(0)
 					end if
 				end if
 
