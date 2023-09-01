@@ -1,2 +1,6 @@
-# Auto detect text files and perform LF normalization
+
+# default behaviour
 * text=auto
+
+# v4 Script files must ALWAYS use crlf line endings
+*.txt text eol=crlf

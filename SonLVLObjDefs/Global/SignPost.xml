@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="egg">
+  <Images>
+    <ImageFromSheet id="base" sheet="Global/Items2.gif" sourcex="34" sourcey="132" width="48" height="16">
+      <Offset X="-24" Y="16"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="egg" sheet="Global/Items2.gif" sourcex="34" sourcey="100" width="48" height="32">
+      <Offset X="-24" Y="-16"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="sonic" sheet="Global/Items2.gif" sourcex="34" sourcey="1" width="48" height="32">
+      <Offset X="-24" Y="-16"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="tails" sheet="Global/Items2.gif" sourcex="34" sourcey="34" width="48" height="32">
+      <Offset X="-24" Y="-16"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Mode" type="Modes" startbit="0" length="2" />
+  </Properties>
+  <Enums>
+    <Enum name="Modes">
+      <EnumMember name="Normal" />
+      <EnumMember name="VS Only (Y Bounds)" />
+      <EnumMember name="VS Only (No Y Bounds)" />
+    </Enum>
+  </Enums>
+  <DefaultImage>
+    <ImageRef image="base" />
+    <ImageRef image="egg" />
+  </DefaultImage>
+  <Display>
+    <DisplayOption>
+      <Condition property="Mode" value="Normal" />
+      <ImageRef image="base" />
+      <ImageRef image="egg" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Mode" value="VS Only (Y Bounds)" />
+      <ImageRef image="base" />
+      <ImageRef image="sonic" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Mode" value="VS Only (No Y Bounds)" />
+      <ImageRef image="base" />
+      <ImageRef image="tails" />
+    </DisplayOption>
+  </Display>
+</ObjDef>

@@ -1,3 +1,51 @@
+[0]GDT CREDITS
+
+
+
+[1]EVERYONE IN REMS FOR BEING AMAZING
+
+
+
+[1]THE RSDK DECOMP PROJECT TEAM
+[2]Without them GDT wouldn't be possible
+
+
+
+[1]ORIGINAL IDEA
+[2]Klashicola
+
+
+
+[1]CODERS
+[2]Twanvanb1
+[2]Geared
+[2]DonZombpepoGames
+[2]Zero242
+
+
+
+[1]MUSIC
+[2]John Tay
+[2]The sonic ATS team
+[2]The Red panda
+[2]DonZombpepoGames
+[2]Dischu (shh its a secret)
+[2]Pedro Games2
+
+
+
+
+[1]SPRITES
+[2]Sega and Sonic Team
+[2]Team forever
+[2]LegoLoco7
+
+
+
+[0]ORIGINAL S2 REMASTER CREDITS
+
+
+
 [0]ORIGINAL GAME
 [0]DEVELOPED BY SEGA
 

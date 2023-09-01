@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="sprite">
+  <Images>
+    <ImageFromSheet id="sprite" sheet="Global/Display.gif" sourcex="134" sourcey="18" width="16" height="16">
+      <Offset X="-8" Y="-8"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Mode" type="adjusttypes" startbit="0" length="1" />
+  </Properties>
+  <Enums>
+    <Enum name="adjusttypes">
+      <EnumMember name="Regular Adjust" />
+      <EnumMember name="Box Adjust" />
+    </Enum>
+  </Enums>
+</ObjDef>

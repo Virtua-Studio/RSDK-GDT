@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="middle">
+  <Images>
+    <ImageFromSheet id="left" sheet="GHZ/Objects.gif" sourcex="191" sourcey="146" width="32" height="64">
+      <Offset X="-16" Y="-32"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="middle" sheet="GHZ/Objects.gif" sourcex="207" sourcey="146" width="32" height="64">
+      <Offset X="-16" Y="-32"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="right" sheet="GHZ/Objects.gif" sourcex="223" sourcey="146" width="32" height="64">
+      <Offset X="-16" Y="-32"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Side" description="Which side this Breakable Wall is facing." type="sides" startbit="0" length="8" />
+  </Properties>
+  <Enums>
+    <Enum name="sides">
+      <EnumMember name="Left" />
+      <EnumMember name="Middle" />
+      <EnumMember name="Right" />
+    </Enum>
+  </Enums>
+  <Subtypes>
+    <Subtype id="00" name="Left" image="left" />
+    <Subtype id="01" name="Middle" image="middle" />
+    <Subtype id="02" name="Right" image="right" />
+  </Subtypes>
+</ObjDef>

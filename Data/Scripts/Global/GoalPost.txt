@@ -1,0 +1,16 @@
+//Another Sonic Adventure/RSDK-GDT Project//
+//Goal Post Script//
+//Scripted by Christian Whitehead//
+//Recreated in v4 by Zombstech//
+
+
+//the parts about limiting the xbounds and removing time warps were removed because in GDT and ASA there aren't time warps and in v4 the sign post limits the bounds instead of this object//
+
+event ObjectDraw
+	DrawSprite(0)
+end event
+
+event ObjectStartup
+	LoadSpriteSheet("Global/GoalPost.gif")
+	SpriteFrame(-20, -44, 40, 56, 34, 165)	// #0 - Goal Post
+end event

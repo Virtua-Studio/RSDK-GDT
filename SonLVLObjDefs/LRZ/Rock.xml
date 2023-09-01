@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="Full">
+  <Images>
+    <ImageFromSheet id="Full" sheet="LRZ/Objects.gif" sourcex="1" sourcey="1" width="32" height="16">
+      <Offset X="-16" Y="-8"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="Half" sheet="LRZ/Objects.gif" sourcex="1" sourcey="1" width="16" height="16">
+      <Offset X="-16" Y="-8"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="Small" sheet="LRZ/Objects.gif" sourcex="51" sourcey="1" width="16" height="8">
+      <Offset X="-16" Y="-8"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="Tiny" sheet="LRZ/Objects.gif" sourcex="51" sourcey="10" width="8" height="8">
+      <Offset X="-16" Y="-8"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="Half_M" sheet="LRZ/Objects.gif" sourcex="17" sourcey="1" width="16" height="16">
+      <Offset X="0" Y="-8"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Size" type="Size" startbit="0" length="3" />
+  </Properties>
+  <Enums>
+    <Enum name="Size">
+      <EnumMember name="full" />
+      <EnumMember name="half" />
+      <EnumMember name="small" />
+      <EnumMember name="tiny" />
+      <EnumMember name="half_m" />
+    </Enum>
+  </Enums>
+  <Display>
+    <DisplayOption>
+      <Condition property="Size" value="full" />
+      <ImageRef image="Full" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Size" value="half" />
+      <ImageRef image="Half" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Size" value="small" />
+      <ImageRef image="Small" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Size" value="tiny" />
+      <ImageRef image="Tiny" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Size" value="half_m" />
+      <ImageRef image="Half_M" />
+    </DisplayOption>
+  </Display>
+</ObjDef>
