@@ -3904,6 +3904,7 @@ public function Player_State_Fly
 				if player.jumpPress == true
             	player.animation = ANI_JUMPING
             	player.state = Player_State_Air
+				player.jumpAbilityState = 2
         		end if
 			end if
 		end if
@@ -4219,6 +4220,7 @@ public function Player_State_GlideDrop
 		if player.up == true
            	player.animation = ANI_JUMPING
            	player.state = Player_State_Air
+			player.jumpAbilityState = 2
        	end if
 	end if
 end function
