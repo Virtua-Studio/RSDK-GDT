@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="vplat">
+  <Images>
+    <ImageFromSheet id="vplat" sheet="GHZ/Objects.gif" sourcex="191" sourcey="1" width="64" height="144">
+      <Offset X="-32" Y="-8"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Start Direction" description="The starting direction of this Platform." type="stardirs" startbit="0" length="1" />
+  </Properties>
+  <Enums>
+    <Enum name="stardirs">
+      <EnumMember name="Upwards" />
+      <EnumMember name="Downwards" />
+    </Enum>
+  </Enums>
+  <Subtypes>
+    <Subtype id="00" name="Start Upwards" image="vplat" />
+    <Subtype id="01" name="Start Downwards" image="vplat" />
+  </Subtypes>
+</ObjDef>

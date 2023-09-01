@@ -1,0 +1,12 @@
+1. Open CMD as administrator
+2. Look for the path of your datafile, preferably move it to disk C so that it is easier to change it, my test path will be "C:\Unpack2"
+3. Use the CD command to be in the path you are going to use
+4. And run this command "dir /s /b /os >RSDKv4FileList.txt" If you want to make your datafile for v5U change the name of the resulting txt to "rsdk_files_list"
+5. Copy this txt file to your Retrun folder in case of zipping for v4 or to v5pack in case you want to compress for v5U For both cases use as a reference the lists and folders premade for the current version of GDT
+6. If you did everything right you should have a functional datafile for the corresponding engine version
+
+Clarification, the lists created by the CMD to work with both programs require a manual review and modification, so please REFERENCE THE PRE-MADE FOR GDT
+
+Always remember that when compressing a datafile the scripts start to behave similar to ByteCode so do not activate the option to force them in the settings.ini when you use the datafile
+
+Mini guide written by Zero242 :D

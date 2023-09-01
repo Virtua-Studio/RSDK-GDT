@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="up">
+  <Images>
+    <ImageFromSheet id="up" sheet="Global/Items2.gif" sourcex="182" sourcey="99" width="32" height="32">
+      <Offset X="-16" Y="-16"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="right" sheet="Global/Items2.gif" sourcex="182" sourcey="132" width="32" height="32">
+      <Offset X="-16" Y="-16"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="left" sheet="Global/Items2.gif" sourcex="215" sourcey="132" width="32" height="32">
+      <Offset X="-16" Y="-16"/>
+    </ImageFromSheet>
+    <ImageFromSheet id="down" sheet="Global/Items2.gif" sourcex="215" sourcey="99" width="32" height="32">
+      <Offset X="-16" Y="-16"/>
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Direction" type="directions" startbit="0" length="2" />
+    <Property name="Moving" type="bool" startbit="2" length="1" />
+  </Properties>
+  <Enums>
+    <Enum name="directions">
+      <EnumMember name="Up" />
+      <EnumMember name="Right" />
+      <EnumMember name="Left" />
+      <EnumMember name="Down" />
+    </Enum>
+  </Enums>
+  <Display>
+    <DisplayOption>
+      <Condition property="Direction" value="Up" />
+      <ImageRef image="up" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Direction" value="Right" />
+      <ImageRef image="right" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Direction" value="Left" />
+      <ImageRef image="left" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Direction" value="Down" />
+	  <!-- Intentional, S2 gives downwards facing spikes the FLIP_Y attr too
+		   May just migrate this obj def to C# to avoid this weird overlap -->
+      <ImageRef image="down" />
+    </DisplayOption>
+  </Display>
+</ObjDef>

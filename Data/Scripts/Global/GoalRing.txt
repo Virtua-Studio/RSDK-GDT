@@ -1,0 +1,145 @@
+
+//-------Aliases-------//
+private alias 22 : TYPE_GOALRING
+
+// Player Aliases
+private alias object.xpos 			: player.xpos
+private alias object.ypos 			: player.ypos
+private alias object.ixpos			: player.ixpos
+private alias object.xvel 			: player.xvel
+
+// Static Values
+
+// Tables
+
+event ObjectUpdate
+	if object.state == 0
+		temp0 = object.ypos
+		temp0 += 0x400000
+		if player[0].ypos < temp0
+			stage.newXBoundary1 = object.xpos
+			stage.newXBoundary1 >>= 16
+			stage.newXBoundary1 -= screen.xcenter
+			stage.newXBoundary1 -= screen.xcenter
+
+			stage.newXBoundary2 = object.xpos
+			stage.newXBoundary2 >>= 16
+			stage.newXBoundary2 += screen.xcenter
+
+			if player[0].xpos > object.xpos
+				stage.newXBoundary1 = object.xpos
+				stage.newXBoundary1 >>= 16
+				stage.newXBoundary1 -= screen.xcenter
+				if object[0].value0 > -1
+					BoxCollisionTest(C_TOUCH, object.entityPos, -16, -16, 16, 16, 0, -16, -16, 16, 16)
+					if checkResult == 1
+						PlaySfx(SfxName[Special Ring], false)
+						object.value39 = 1
+						object[0].type = TypeName[Blank Object]
+						object[playerCount].type = TypeName[Blank Object]
+						object[0].controlMode = -1
+						object[0].direction = FLIP_NONE
+						ResetObjectEntity(4, TypeName[Blank Object], 0, 0, 0)
+						object.state = 1
+						object.priority = PRIORITY_BOUNDS_SMALL
+						object[0].controlMode = -1
+						fadeColor = 208
+						fadeColor <<= 16
+						temp0 = 255
+						temp0 <<= 8
+						fadeColor += temp0
+						fadeColor += 224
+						object.value9 = 0
+					end if
+				end if
+			end if
+		end if
+	end if
+	if object.value39 == 1
+		object.value40++
+		object.value9 += 8
+			stage.timeEnabled = false
+			object[30].type = TypeName[Act Finish]
+			object[30].drawOrder = 6
+			object[30].priority = PRIORITY_ACTIVE
+			
+		end if
+	end if
+end event
+
+
+event ObjectDraw
+	if object.value41 == 0
+		temp1 = object.value38
+		temp1 >>= 3
+		DrawSprite(temp1, object.xpos, object.ypos)
+		object.value38++
+		if object.value38 > 31
+			object.value38 = 0
+		end if
+	end if
+	switch object.state
+	case 0
+		break
+	case 1
+		if object.value31 == 0
+			object.frame = 32
+			object.value31 = 1
+		end if
+		temp0 = object.frame
+		temp0 >>= 3
+		if temp0 > 7
+			object.value41 = 1
+			object.direction = FLIP_X
+		else
+			object.direction = FLIP_NONE
+		end if
+		DrawSpriteFX(temp0, FX_FLIP, object.xpos, object.ypos)
+		if temp0 > 10
+			object.frame = 88
+		end if
+		object.frame += 6
+		break
+	end switch
+end event
+
+
+event ObjectStartup
+	object.value39 = 0
+	object.value31 = 0
+	LoadSpriteSheet("Global/GoalRing.gif")
+	SpriteFrame(-12, -32, 24, 64, 79, 1)
+	SpriteFrame(-28, -32, 56, 64, 104, 1)
+	SpriteFrame(-32, -32, 64, 64, 79, 66)
+	SpriteFrame(-27, -32, 55, 64, 1, 106)
+	SpriteFrame(-0, -32, 32, 64, 161, 1)
+	SpriteFrame(-8, -32, 40, 64, 194, 1)
+	SpriteFrame(-16, -32, 48, 64, 144, 66)
+	// CENTER
+	SpriteFrame(-32, -32, 64, 64, 57, 131)
+	// CENTER
+	SpriteFrame(-16, -32, 48, 64, 144, 66)
+	SpriteFrame(-8, -32, 40, 64, 194, 1)
+	SpriteFrame(-0, -32, 32, 64, 161, 1)
+	// Transparent Frame
+	SpriteFrame(-0, -32, 1, 1, 1, 1)
+	if specialStage.emeralds >= temp0
+
+		ResetObjectEntity(arrayPos0, TypeName[Blank Object], 0, 0, 0)
+	next
+end if
+if options.gameMode == 2
+
+	ResetObjectEntity(arrayPos0, TypeName[Blank Object], 0, 0, 0)
+next
+end if
+end event
+
+event RSDKDraw
+	DrawSprite(0)
+end event
+
+event RSDKLoad
+	LoadSpriteSheet("Global/GoalRing.gif")
+	SpriteFrame(-32, -32, 64, 64, 83, 1)
+end event

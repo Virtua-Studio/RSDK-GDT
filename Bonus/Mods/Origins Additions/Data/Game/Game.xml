@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<game>
+	<palette>
+	</palette>
+	<variables>
+		<variable name="game.playMode" value="1"/>
+		<variable name="NotifyCallback" value="0"/>
+		<variable name="NOTIFY_DEATH_EVENT" value="128"/>
+		<variable name="NOTIFY_TOUCH_SIGNPOST" value="129"/>
+		<variable name="NOTIFY_HUD_ENABLE" value="130"/>
+		<variable name="NOTIFY_ADD_COIN" value="131"/>
+		<variable name="NOTIFY_KILL_ENEMY" value="132"/>
+		<variable name="BOOT_PLAYMODE_CLASSIC" value="0"/>
+		<variable name="BOOT_PLAYMODE_ANNIVERSARY" value="1"/>
+		<variable name="BOOT_PLAYMODE_BOSSRUSH" value="2"/>
+		<variable name="BOOT_PLAYMODE_MIRRORING" value="3"/>
+		<variable name="BOOT_PLAYMODE_MISSION" value="4"/>
+		<variable name="game.callbackParam0" value="0"/>
+		<variable name="game.callbackParam1" value="0"/>
+		<variable name="game.callbackParam2" value="0"/>
+		<variable name="game.callbackParam3" value="0"/>
+		<variable name="game.hudEnable" value="0"/>
+		<variable name="HUDENABLE_OFF" value="0"/>
+		<variable name="HUDENABLE_ON" value="1"/>
+		<variable name="game.coinMode" value="0"/>
+		<variable name="game.forceKillPlayer" value="0"/>
+		<variable name="game.missionCondition" value="0"/>
+		<variable name="MISSION_CONDITION_CLEAR" value="1"/>
+		<variable name="MISSION_CONDITION_FAIL" value="2"/>
+		<variable name="game.missionFunctionNo" value="0"/>
+		<variable name="game.missionValue" value="0"/>
+		<variable name="game.missionEnd" value="0"/>
+		<variable name="game.continueFlag" value="0"/>
+		<variable name="NOTIFY_SAVESLOT_SELECT" value="133"/>
+		<variable name="NOTIFY_FUTURE_PAST" value="134"/>
+		<variable name="NOTIFY_GOTO_FUTURE_PAST" value="135"/>
+		<variable name="NOTIFY_BOSS_END" value="136"/>
+		<variable name="NOTIFY_SPECIAL_END" value="137"/>
+		<variable name="BOOT_PLAYMODE_STORY" value="5"/>
+		<variable name="game.titleCardDisable" value="0"/>
+		<variable name="game.bossOneLife" value="0"/>
+		<variable name="KILL_ENEMY_ATTR_ANIMALPRISON" value="1"/>
+		<variable name="KILL_ENEMY_ATTR_SPINDASH" value="2"/>
+		<variable name="KILL_ENEMY_ATTR_GLIDING" value="3"/>
+		<variable name="NOTIFY_DEBUGPRINT" value="138"/>
+		<variable name="NOTIFY_KILL_BOSS" value="139"/>
+		<variable name="NOTIFY_TOUCH_EMERALD" value="140"/>
+		<variable name="NOTIFY_STATS_ENEMY" value="141"/>
+		<variable name="NOTIFY_STATS_CHARA_ACTION" value="142"/>
+		<variable name="NOTIFY_STATS_RING" value="143"/>
+		<variable name="NOTIFY_STATS_MOVIE" value="144"/>
+		<variable name="NOTIFY_STATS_PARAM_1" value="145"/>
+		<variable name="NOTIFY_STATS_PARAM_2" value="146"/>
+		<variable name="StatsUsabilityParam1" value="0"/>
+		<variable name="StatsUsabilityParam2" value="0"/>
+		<variable name="StatsUsabilityParam3" value="0"/>
+		<variable name="StatsUsabilityParam4" value="0"/>
+		<variable name="StatsUsabilityParam5" value="0"/>
+		<variable name="StageStatsUsabilityParam1" value="0"/>
+		<variable name="StageStatsUsabilityParam2" value="0"/>
+		<variable name="StageStatsUsabilityParam3" value="0"/>
+		<variable name="StageStatsUsabilityParam4" value="0"/>
+		<variable name="StageStatsUsabilityParam5" value="0"/>
+		<variable name="NOTIFY_CHARACTER_SELECT" value="147"/>
+		<variable name="game.callbackResult" value="0"/>
+		<variable name="NOTIFY_SPECIAL_RETRY" value="148"/>
+		<variable name="NOTIFY_TOUCH_CHECKPOINT" value="149"/>
+		<variable name="NOTIFY_ACT_FINISH" value="150"/>
+		<variable name="NOTIFY_1P_VS_SELECT" value="151"/>
+		<variable name="game.titleMode" value="0"/>
+		<variable name="NOTIFY_CONTROLLER_SUPPORT" value="152"/>
+		<variable name="game.oneStageFlag" value="0"/>
+		<variable name="NOTIFY_STAGE_RETRY" value="153"/>
+		<variable name="recRing" value="0"/>
+		<variable name="recScore" value="0"/>
+		<variable name="NOTIFY_SOUND_TRACK" value="154"/>
+		<variable name="NOTIFY_GOOD_ENDING" value="155"/>
+		<variable name="NOTIFY_BACK_TO_MAINMENU" value="156"/>
+		<variable name="NOTIFY_LEVEL_SELECT_MENU" value="157"/>
+		<variable name="NOTIFY_PLAYER_SET" value="158"/>
+		<variable name="NOTIFY_EXTRAS_MODE" value="159"/>
+		<variable name="game.cheatEmeralds" value="0"/>
+		<variable name="game.coinCount" value="0"/>
+		<variable name="game.stageskipped" value="0"/>
+		<variable name="input.pressButton" value="0"/>
+		<variable name="player.deadResetRings" value="0"/>
+		<variable name="game.timeOver" value="0"/>
+		<variable name="NOTIFY_TIME_OVER" value="161"/>
+	</variables>
+	<objects>
+	</objects>
+	<sounds>
+	</sounds>
+	<players>
+	</players>
+	<presentationStages>
+	</presentationStages>
+	<regularStages>
+	</regularStages>
+	<specialStages>
+	</specialStages>
+	<bonusStages>
+	</bonusStages>
+</game>

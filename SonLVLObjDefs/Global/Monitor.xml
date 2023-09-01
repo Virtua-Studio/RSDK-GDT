@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Image="base">
+  <Images>
+    <ImageFromSheet id="base" sheet="Global/Items.gif" sourcex="18" sourcey="1" width="32" height="32">
+      <Offset X="-16" Y="-16" />
+    </ImageFromSheet>
+    <ImageFromSheet id="static" sheet="Global/Items.gif" sourcex="35" sourcey="51" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="rings" sheet="Global/Items.gif" sourcex="18" sourcey="66" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="shield" sheet="Global/Items.gif" sourcex="35" sourcey="66" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="invincibility" sheet="Global/Items.gif" sourcex="18" sourcey="81" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="shoes" sheet="Global/Items.gif" sourcex="35" sourcey="81" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="sonic" sheet="Global/Items.gif" sourcex="18" sourcey="96" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="tails" sheet="Global/Items.gif" sourcex="35" sourcey="96" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="knuckles" sheet="Global/Items.gif" sourcex="18" sourcey="111" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="super" sheet="Global/Items.gif" sourcex="35" sourcey="111" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="bubble" sheet="Global/Items.gif" sourcex="18" sourcey="141" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="lightning" sheet="Global/Items.gif" sourcex="18" sourcey="126" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="fire" sheet="Global/Items.gif" sourcex="35" sourcey="126" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="eggman" sheet="Global/Items.gif" sourcex="35" sourcey="141" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="teleport" sheet="Global/Items.gif" sourcex="18" sourcey="156" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="random" sheet="Global/Items.gif" sourcex="35" sourcey="156" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="elements" sheet="Global/Items.gif" sourcex="18" sourcey="171" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+    <ImageFromSheet id="emeralds" sheet="Global/Items.gif" sourcex="35" sourcey="171" width="16" height="14">
+      <Offset X="-8" Y="-12" />
+    </ImageFromSheet>
+  </Images>
+  <Properties>
+    <Property name="Contents" type="MonitorType" startbit="0" length="4" />
+    <Property name="Alt Contents" type="MonitorType" startbit="4" length="4" />
+  </Properties>
+  <Enums>
+    <Enum name="MonitorType">
+      <EnumMember name="Static" />
+      <EnumMember name="Rings" />
+      <EnumMember name="Shield" />
+      <EnumMember name="Invincibility" />
+      <EnumMember name="Speed Shoes" />
+      <EnumMember name="Sonic" />
+      <EnumMember name="Tails" />
+      <EnumMember name="Knuckles" />
+      <EnumMember name="Super" />
+      <EnumMember name="Bubble Shield" />
+      <EnumMember name="Fire Shield" />
+      <EnumMember name="Lightning Shield" />
+      <EnumMember name="Eggman" />
+      <EnumMember name="Teleport" />
+      <EnumMember name="Random" />
+      <EnumMember name="Toggle Elemental Shields" />
+    </Enum>
+  </Enums>
+  <Display>
+    <DisplayOption>
+      <Condition property="Contents" value="Static" />
+      <ImageRef image="base" />
+      <ImageRef image="static" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Rings" />
+      <ImageRef image="base" />
+      <ImageRef image="rings" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Shield" />
+      <ImageRef image="base" />
+      <ImageRef image="shield" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Invincibility" />
+      <ImageRef image="base" />
+      <ImageRef image="invincibility" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Speed Shoes" />
+      <ImageRef image="base" />
+      <ImageRef image="shoes" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Sonic" />
+      <ImageRef image="base" />
+      <ImageRef image="sonic" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Tails" />
+      <ImageRef image="base" />
+      <ImageRef image="tails" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Knuckles" />
+      <ImageRef image="base" />
+      <ImageRef image="knuckles" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Super" />
+      <ImageRef image="base" />
+      <ImageRef image="super" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Bubble Shield" />
+      <ImageRef image="base" />
+      <ImageRef image="bubble" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Fire Shield" />
+      <ImageRef image="base" />
+      <ImageRef image="fire" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Lightning Shield" />
+      <ImageRef image="base" />
+      <ImageRef image="lightning" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Eggman" />
+      <ImageRef image="base" />
+      <ImageRef image="eggman" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Teleport" />
+      <ImageRef image="base" />
+      <ImageRef image="teleport" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Random" />
+      <ImageRef image="base" />
+      <ImageRef image="random" />
+    </DisplayOption>
+    <DisplayOption>
+      <Condition property="Contents" value="Toggle Elemental Shields" />
+      <ImageRef image="base" />
+      <ImageRef image="elements" />
+    </DisplayOption>
+  </Display>
+</ObjDef>
