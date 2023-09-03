@@ -93,6 +93,7 @@ public alias 1 : PLAYER_TAILS_ALONE
 public alias 2 : PLAYER_KNUX_ALONE
 public alias 3 : PLAYER_SONIC_AND_TAILS
 public alias 4 : PLAYER_AMY_ALONE
+public alias 5 : PLAYER_METAL_ALONE
 // Origins's PLAYER_KNUX_AND_TAILS would technically be value 4, but Origins always just checks it like `stage.playerListPos > PLAYER_SONIC_AND_TAILS` instead
 
 // Shields
@@ -827,6 +828,10 @@ public function Player_UpdatePhysicsState
 
 	case PLAYER_AMY_ALONE
 		temp0 = Player_AmyPhysicsTable
+		break	
+		
+	case PLAYER_METAL_ALONE
+		temp0 = Player_SonicPhysicsTable
 		break		
 
 	end switch
@@ -900,6 +905,9 @@ public function Player_HandleSuperForm
 			CallFunction(Player_HandleSuperPalette_Amy)
 			break
 			
+		case PLAYER_METAL_ALONE
+			CallFunction(Player_HandleSuperPalette_Sonic)
+			break	
 		end switch
 	end if
 
@@ -5516,7 +5524,6 @@ event ObjectStartup
 			player[SLOT_PLAYER1].jumpOffset 	= -5
 			player[SLOT_PLAYER1].jumpAbility 	= Player_Action_DblJumpSonic
 			player[SLOT_PLAYER1].actionPeelout = Player_Action_Peelout
-			//ANI_PEELOUT 			= ANI_RUNNING //If you want to disable the peelout animation uncomment this
 			//If you want to disable supersonic peelout animation uncomment this
 			if Player_superState == 1
 				ANI_PEELOUT 			= ANI_RUNNING
@@ -5574,7 +5581,15 @@ event ObjectStartup
 			ANI_PEELOUT 						= ANI_HAMMERDASH
 			player[SLOT_PLAYER1].actionPeelout = Player_Action_Peelout
 			break	
-			
+		case PLAYER_METAL_ALONE
+			LoadAnimation("MSonic.ani")
+			CallFunction(Player_HandleSuperPalette_Sonic)
+			player[SLOT_PLAYER1].character 		= PLAYER_SONIC_ALONE
+			player[SLOT_PLAYER1].jumpOffset 	= -5
+			player[SLOT_PLAYER1].jumpAbility 	= Player_Action_DblJumpSonic
+			player[SLOT_PLAYER1].actionPeelout = Player_Action_Peelout
+			ANI_PEELOUT 			= ANI_RUNNING
+			break
 		end switch
 
 		if stage.player2Enabled == true

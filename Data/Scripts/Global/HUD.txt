@@ -197,22 +197,43 @@ private function HUD_Draw_Standard
 			end if
 			
 #platform: USE_STANDALONE
-			// Lives icon
-			if stage.playerListPos <= 3
-				temp0 = stage.playerListPos
-				temp0 += 15
-				DrawSpriteScreenXY(temp0, 16, 213)
-			else
-				DrawSpriteScreenXY(38, 16, 213)
-			end if
-
+			// Lives icon	
+			switch stage.playerListPos
+				case PLAYER_SONIC_ALONE
+					DrawSpriteScreenXY(15, 16, 213)
+					break
+				case PLAYER_TAILS_ALONE
+					DrawSpriteScreenXY(16, 16, 213)
+					break
+				case PLAYER_KNUX_ALONE
+					DrawSpriteScreenXY(17, 16, 213)
+					break
+				case PLAYER_AMY_ALONE
+					DrawSpriteScreenXY(38, 16, 213)
+					break
+				case PLAYER_METAL_ALONE
+					DrawSpriteScreenXY(40, 16, 213)
+					break
+			end switch
+			
 			// Character text
-			if stage.playerListPos <= 3
-				temp0 += 6
-				DrawSpriteScreenXY(temp0, 33, 213)
-			else
-				DrawSpriteScreenXY(39,33, 213)
-			end if
+			switch stage.playerListPos
+				case PLAYER_SONIC_ALONE
+					DrawSpriteScreenXY(21, 33, 213)
+					break
+				case PLAYER_TAILS_ALONE
+					DrawSpriteScreenXY(22, 33, 213)
+					break
+				case PLAYER_KNUX_ALONE
+					DrawSpriteScreenXY(23, 33, 213)
+					break
+				case PLAYER_AMY_ALONE
+					DrawSpriteScreenXY(39, 33, 213)
+					break
+				case PLAYER_METAL_ALONE
+					DrawSpriteScreenXY(41, 33, 213)
+					break
+			end switch
 			// X between icon and number
 			DrawSpriteScreenXY(20, 38, 222)
 
@@ -322,26 +343,43 @@ private function HUD_Draw_Mobile
 
 	temp1 = screen.xsize
 	temp1 -= 64
-	if stage.playerListPos <= 3
-		temp0 = stage.playerListPos
-		temp0 += 15
-		DrawSpriteScreenXY(temp0, temp1, 8)
-	else
-		DrawSpriteScreenXY(38, temp1, 8)
-	end if
+	switch stage.playerListPos
+		case PLAYER_SONIC_ALONE
+			DrawSpriteScreenXY(15, temp1, 8)
+			break
+		case PLAYER_TAILS_ALONE
+			DrawSpriteScreenXY(16, temp1, 8)
+			break
+		case PLAYER_KNUX_ALONE
+			DrawSpriteScreenXY(17, temp1, 8)
+			break
+		case PLAYER_AMY_ALONE
+			DrawSpriteScreenXY(38, temp1, 8)
+			break
+		case PLAYER_METAL_ALONE
+			DrawSpriteScreenXY(40, temp1, 8)
+			break
+	end switch
 	
 	temp1 += 17
 	temp0 += 6
-	if stage.playerListPos <= 3
-		DrawSpriteScreenXY(temp0, temp1, 9)
-	else
-		DrawSpriteScreenXY(39, temp1, 9)
-	end if
-	//original code please dont use that it brokes amy hud lol
-	//temp1 += 17
-	//temp0 += 6
-	//DrawSpriteScreenXY(temp0, temp1, 9)
-
+	switch stage.playerListPos
+		case PLAYER_SONIC_ALONE
+			DrawSpriteScreenXY(21, temp1, 8)
+			break
+		case PLAYER_TAILS_ALONE
+			DrawSpriteScreenXY(22, temp1, 8)
+			break
+		case PLAYER_KNUX_ALONE
+			DrawSpriteScreenXY(23, temp1, 8)
+			break
+		case PLAYER_AMY_ALONE
+			DrawSpriteScreenXY(39, temp1, 8)
+			break
+		case PLAYER_METAL_ALONE
+			DrawSpriteScreenXY(41, temp1, 8)
+			break
+	end switch
 	temp1 += 5
 	DrawSpriteScreenXY(20, temp1, 18)
 
@@ -451,8 +489,11 @@ event ObjectStartup
 	SpriteFrame(8, 0, 8, 8, 136, 64) 	// #35 - Small debug Minus sign
 	SpriteFrame(0, 0, 8, 8, 25, 98) 	// #36 - Red X Debug Icon
 	SpriteFrame(0, 0, 8, 8, 34, 98) 	// #37 - Red Y Debug Icon
-	SpriteFrame(0, 0, 16, 16, 120, 47)
-	SpriteFrame(-4, 0, 31, 7, 217, 34)
+	SpriteFrame(0, 0, 16, 16, 120, 47)  // #38 - Amy life icon
+	SpriteFrame(-4, 0, 31, 7, 217, 34) 	// #39 - Amy name tag
+	
+	SpriteFrame(0, 0, 16, 16, 137, 47)  // #40 - MSonic life icon
+	SpriteFrame(0, 0, 36, 7, 185, 42) 	// #41 - MSonic name tag
 	
 #platform: USE_ORIGINS
 	SpriteFrame(0, 0, 16, 16, 179, 180)	// #38 - Coins life icon
